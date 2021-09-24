@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace OWASP.WebGoat.NET.App_Code.DB
 {
@@ -514,9 +515,15 @@ namespace OWASP.WebGoat.NET.App_Code.DB
 
         public DataSet GetEmailByName(string name)
         {
-            string sql = "select firstName, lastName, email from Employees where firstName like '" + name + "%' or lastName like '" + name + "%'";
-            
-            
+            // Remove any whitespace either leading or trailing.
+            string cleanName = name.ToString().Trim();
+
+            // If the Regex for a-z A-Z and length of 10 doesn't match then return null.
+            if (!Regex.IsMatch(cleanName, @"^[a-zA-Z]{1,10}$")) { return null; }
+
+            string sql = "select firstName, lastName, email from Employees where firstName like '" + cleanName + "%' or lastName like '" + cleanName + "%'";
+
+
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, connection);
@@ -535,7 +542,13 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             string output = "";
             try
             {
-            
+                // Try converting the input to a number.
+                int number;
+                bool isNumber = int.TryParse(num, out number);
+
+                // If the passed string is not a number, throw error.
+                if (!isNumber) { throw new ArgumentException("Invalid Input Passed."); }
+
                 output = (String)MySqlHelper.ExecuteScalar(_connectionString, "select email from CustomerLogin where customerNumber = " + num);
                 /*using (MySqlConnection connection = new MySqlConnection(_connectionString))
                 {

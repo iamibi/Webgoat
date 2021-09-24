@@ -28,8 +28,12 @@ namespace OWASP.WebGoat.NET
             if (ds != null)
             {
                 grdEmail.DataSource = ds.Tables[0];
-                grdEmail.DataBind();
             }
+            else
+            { 
+                grdEmail.DataSource = null;
+            }
+            grdEmail.DataBind();
 		}
 	}
 }
