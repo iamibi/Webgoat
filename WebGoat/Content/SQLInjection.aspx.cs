@@ -25,14 +25,16 @@ namespace OWASP.WebGoat.NET
             string name = txtName.Text;
             DataSet ds = du.GetEmailByName(name);
 
+            // Reset the grid so that previous input gets cleared.
+            grdEmail.DataSource = null;
+
+            // If the data is not null, get the values and populate.
             if (ds != null)
             {
                 grdEmail.DataSource = ds.Tables[0];
             }
-            else
-            { 
-                grdEmail.DataSource = null;
-            }
+
+            // Bind the data to view.
             grdEmail.DataBind();
 		}
 	}
