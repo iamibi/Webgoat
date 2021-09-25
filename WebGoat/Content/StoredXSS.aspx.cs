@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using OWASP.WebGoat.NET.App_Code.DB;
 using OWASP.WebGoat.NET.App_Code;
+using System.Web.Security.AntiXss;
 
 namespace OWASP.WebGoat.NET
 {
@@ -45,8 +46,8 @@ namespace OWASP.WebGoat.NET
             string comments = string.Empty;
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                comments += "<strong>Email:</strong>" + row["email"] + "<span style='font-size: x-small;color: #E47911;'> (Email Address Verified!) </span><br/>";
-                comments += "<strong>Comment:</strong><br/>" + row["comment"] + "<br/><hr/>";
+                comments += "<strong>Email:</strong>" + AntiXssEncoder.HtmlEncode(row["email"].ToString(), false) + "<span style='font-size: x-small;color: #E47911;'> (Email Address Verified!) </span><br/>";
+                comments += "<strong>Comment:</strong><br/>" + AntiXssEncoder.HtmlEncode(row["comment"].ToString(), false) + "<br/><hr/>";
 
             }
             lblComments.Text = comments;
