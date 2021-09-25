@@ -29,7 +29,7 @@ namespace OWASP.WebGoat.NET
             // Return early if the city is not present in the whitelist.
             if (!cities.Contains(city))
             {
-                lblOutput.Text = "Invalid city";
+                lblOutput.Text = $"Invalid city {AntiXssEncoder.HtmlEncode(city, false)}";
                 dtlView.DataSource = null;
                 dtlView.DataBind();
                 return;
