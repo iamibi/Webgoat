@@ -22,8 +22,14 @@ namespace OWASP.WebGoat.NET
                 try
                 {
                     string filename = Path.GetFileName(FileUpload1.FileName);
-                    FileUpload1.SaveAs(Server.MapPath("~/WebGoatCoins/uploads/") + filename);
-                    labelUpload.Text = "<div class='success' style='text-align:center'>The file " + FileUpload1.FileName + " has been saved in to the WebGoatCoins/uploads directory</div>";
+
+                    // Create the temporary directory and get the path to it.
+                    // It will be located in AppData/Local/Temp folder.
+                    string tempDirectoryWithPath = GetTempDirectoryWithPath();
+
+                    FileUpload1.SaveAs(Path.Combine(tempDirectoryWithPath, filename));
+                    labelUpload.Text = $"<div class='success' style='text-align:center'>The file {filename} has been saved.</div>";
+
                     
                 }
                 catch (Exception ex)
@@ -35,6 +41,13 @@ namespace OWASP.WebGoat.NET
                     labelUpload.Visible = true;
                 }
             }
+        }
+
+        private string GetTempDirectoryWithPath() 
+        {
+            string tempDirectoryWithPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            Directory.CreateDirectory(tempDirectoryWithPath);
+            return tempDirectoryWithPath;
         }
     }
 }

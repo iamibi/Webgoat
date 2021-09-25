@@ -10,10 +10,18 @@ namespace OWASP.WebGoat.NET
 {
     public partial class PathManipulation : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {	
+		const string fileArchitecture = "architecture.pdf";
+		const string fileAuthentication = "authentication.pdf";
+		const string fileCSRF = "csrf.pdf";
+		const string fileTransportLayer = "transport_layer.pdf";
+
+		// Allowed Files whitelist.
+		public static readonly string[] allowedFiles = { fileArchitecture, fileAuthentication, fileCSRF, fileTransportLayer };
+
+		protected void Page_Load(object sender, EventArgs e)
+        {
 			//if(Request.QueryString["filename"] == null)
-        	//{
+			//{
 				DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/Downloads"));
 	        	int i = 0;
 	        	
@@ -35,6 +43,9 @@ namespace OWASP.WebGoat.NET
         		{
                     try
                     {
+						// If the allowed files whitelist constant doesn't contain the filename, then throw error.
+						if (!allowedFiles.Contains(filename)) { throw new InvalidDataException("The filename is invalid: " + filename.ToString()); }
+
                         ResponseFile(Request, Response, filename, MapPath("~/Downloads/" + filename), 100);
                     }
                     catch (Exception ex)
