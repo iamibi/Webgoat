@@ -28,7 +28,8 @@ namespace OWASP.WebGoat.NET
 		{
             try
             {
-                string error_message = du.AddComment("user_cmt", txtEmail.Text, txtComment.Text);
+                // Save the values by encoding them first.
+                string error_message = du.AddComment("user_cmt", AntiXssEncoder.HtmlEncode(txtEmail.Text, false), AntiXssEncoder.HtmlEncode(txtComment.Text, false));
                 txtComment.Text = error_message;
                 lblMessage.Visible = true;
                 LoadComments();
@@ -46,8 +47,8 @@ namespace OWASP.WebGoat.NET
             string comments = string.Empty;
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                comments += "<strong>Email:</strong>" + AntiXssEncoder.HtmlEncode(row["email"].ToString(), false) + "<span style='font-size: x-small;color: #E47911;'> (Email Address Verified!) </span><br/>";
-                comments += "<strong>Comment:</strong><br/>" + AntiXssEncoder.HtmlEncode(row["comment"].ToString(), false) + "<br/><hr/>";
+                comments += "<strong>Email:</strong>" + row["email"] + "<span style='font-size: x-small;color: #E47911;'> (Email Address Verified!) </span><br/>";
+                comments += "<strong>Comment:</strong><br/>" + row["comment"] + "<br/><hr/>";
 
             }
             lblComments.Text = comments;
