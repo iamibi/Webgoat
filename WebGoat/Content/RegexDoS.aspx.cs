@@ -2,7 +2,6 @@ using System;
 using System.Web;
 using System.Web.UI;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace OWASP.WebGoat.NET
 {
@@ -22,21 +21,11 @@ namespace OWASP.WebGoat.NET
             string available = txtAvailable.Text;
             string regex = "^(([A-Za-z])+.)+[A-Za-z]([0-9])+$";
 
-            Regex testUsername = new Regex(regex);
+            Regex testUsername = new Regex(regex, RegexOptions.None, TimeSpan.FromSeconds(5));
 
-            // Since .NET framework 4 doesn't support Regex timeout option
-            // We are implementing our own timeout using the Task library.
             try
             {
-                var task = Task.Factory.StartNew(() => testUsername.Match(userName));
-
-                // Should complete in the 5 second window.
-                bool completeInAllotedTime = task.Wait(TimeSpan.FromSeconds(5));
-                
-                // Kill the task thread that is running in the background.
-                task.Wait(new System.Threading.CancellationToken(true));
-
-                if (!completeInAllotedTime)
+                if (!testUsername.IsMatch(userName))
                 {
                     lblError.Text = "Username does not meet acceptable standards.";
                 }
