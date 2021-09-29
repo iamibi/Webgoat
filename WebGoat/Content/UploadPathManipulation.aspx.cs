@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Security.AccessControl;
 
 namespace OWASP.WebGoat.NET
 {
@@ -24,13 +25,17 @@ namespace OWASP.WebGoat.NET
                     string filename = Path.GetFileName(FileUpload1.FileName);
 
                     // Create the temporary directory and get the path to it.
-                    // It will be located in AppData/Local/Temp folder.
+                    // It will be located in WebGoatCoins/uploads folder.
                     string tempDirectoryWithPath = GetTempDirectoryWithPath();
 
-                    FileUpload1.SaveAs(Path.Combine(tempDirectoryWithPath, filename));
-                    labelUpload.Text = $"<div class='success' style='text-align:center'>The file {filename} has been saved.</div>";
+                    // Store the file in the temporary directory.
+                    string fileLocation = Path.Combine(tempDirectoryWithPath, filename);
+                    FileUpload1.SaveAs(fileLocation);
 
-                    
+                    // Remove the execution flag for the file.
+                    SetFileAccess(fileLocation);
+
+                    labelUpload.Text = $"<div class='success' style='text-align:center'>The file {filename} has been saved.</div>";
                 }
                 catch (Exception ex)
                 {
@@ -45,9 +50,18 @@ namespace OWASP.WebGoat.NET
 
         private string GetTempDirectoryWithPath() 
         {
-            string tempDirectoryWithPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            string tempDirectoryWithPath = Path.Combine(Server.MapPath("~/WebGoatCoins/uploads"), Path.GetRandomFileName());
             Directory.CreateDirectory(tempDirectoryWithPath);
             return tempDirectoryWithPath;
+        }
+
+        private void SetFileAccess(string path)
+        {
+            string identity = "student";
+            var fileSecurity = new FileSecurity();
+            var readAndExecuteRule = new FileSystemAccessRule(identity, FileSystemRights.ReadAndExecute, AccessControlType.Deny);
+            fileSecurity.AddAccessRule(readAndExecuteRule);
+            File.SetAccessControl(path, fileSecurity);
         }
     }
 }
