@@ -13,9 +13,9 @@ namespace OWASP.WebGoat.NET.App_Code.DB
         {
             try
             {
-                string filepath = "C:\\Users\\student\\source\\repos\\DatabaseMigration\\customerlogin.txt";
+                string filepath = "C:\\Users\\student\\Workspace\\webgoat\\WebGoat\\DB_Scripts\\datafiles\\customerlogin.txt";
                 StreamReader sr = new StreamReader(filepath);
-                StreamWriter sw = new StreamWriter("C:\\Users\\student\\source\\repos\\DatabaseMigration\\new_customerlogin.txt");
+                StreamWriter sw = new StreamWriter("C:\\Users\\student\\Workspace\\webgoat\\WebGoat\\DB_Scripts\\datafiles\\new_customerlogin.txt");
                 string line = sr.ReadLine();
 
                 while (line != null)
