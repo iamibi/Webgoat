@@ -11,7 +11,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>OWASP.WebGoat.NET</RootNamespace>
     <AssemblyName>DotNetGoat</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
@@ -523,6 +523,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\CustomerLoginData.cs" />
+    <Compile Include="App_Code\DB\DbMigrationScript.cs" />
+    <Compile Include="App_Code\Hashing_Utility\PasswordWithSaltHasher.cs" />
     <Compile Include="Content\ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
