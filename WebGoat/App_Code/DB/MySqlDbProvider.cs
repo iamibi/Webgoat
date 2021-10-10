@@ -111,34 +111,47 @@ namespace OWASP.WebGoat.NET.App_Code.DB
 
         public bool IsValidCustomerLogin(string email, string password)
         {
-            //encode password
-            string encoded_password = Encoder.Encode(password);
-            
-            //check email/password
-            string sql = "select * from CustomerLogin where email = '" + email + 
-                "' and password = '" + encoded_password + "';";
-                        
+            // Get the user with the email id from database.
+            string sqlQuery = "select * from CustomerLogin where email = '" + email + "' limit 1;";
+
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
-                MySqlDataAdapter da = new MySqlDataAdapter(sql, connection);
+                MySqlDataAdapter da = new MySqlDataAdapter(sqlQuery, connection);
             
                 //TODO: User reader instead (for all calls)
                 DataSet ds = new DataSet();
             
                 da.Fill(ds);
-                
+
+                // If the user is not present, return false.
+                if (ds.Tables[0].Rows.Count == 0)
+                    return false;
+
                 try
                 {
-                    return ds.Tables[0].Rows.Count != 0;
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        string storedDigest = dr["password"].ToString();
+                        string salt = dr["salt"].ToString();
 
+                        // If the stored password digest is empty or salt is empty, return false.
+                        if (storedDigest.Trim().Length == 0 || salt.Trim().Length == 0)
+                            return false;
+
+                        // Using the same salt, generate the password hash. Since the salt is Base64 encoded, decode it first.
+                        // Not using the Encoder.Decode library as it causes the string to add randome characters.
+                        HashingAlgorithm hashDigest = new HashingAlgorithm(password, Convert.FromBase64String(salt));
+
+                        return hashDigest.Digest == storedDigest;
+                    }
                 }
                 catch (Exception ex)
                 {
                     //Log this and pass the ball along.
                     log.Error("Error checking login", ex);
-                    
                     throw new Exception("Error checking login", ex);
                 }
+                return false;
             }
         }
         
@@ -294,7 +307,9 @@ namespace OWASP.WebGoat.NET.App_Code.DB
 
         public string UpdateCustomerPassword(int customerNumber, string password)
         {
-            string sql = "update CustomerLogin set password = '" + Encoder.Encode(password) + "' where customerNumber = " + customerNumber;
+            HashingAlgorithm hashResult = new HashingAlgorithm(password);
+            string sql = "update CustomerLogin set password = '" + hashResult.Digest + "', salt = '" + hashResult.Salt + "' where customerNumber = " + customerNumber;
+
             string output = null;
             try
             {
@@ -302,7 +317,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
                 using (MySqlConnection connection = new MySqlConnection(_connectionString))
                 {
                     MySqlCommand command = new MySqlCommand(sql, connection);
-                
+                    connection.Open();
                     int rows_added = command.ExecuteNonQuery();
                     
                     log.Info("Rows Added: " + rows_added + " to comment table");
