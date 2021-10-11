@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Web.Security.AntiXss;
 
 namespace OWASP.WebGoat.NET.App_Code.DB
 {
@@ -112,7 +113,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
         public bool IsValidCustomerLogin(string email, string password)
         {
             // Get the user with the email id from database.
-            string sqlQuery = "select * from CustomerLogin where email = '" + email + "' limit 1;";
+            string sqlQuery = "select * from CustomerLogin where email = '" + AntiXssEncoder.HtmlEncode(email, false) + "' limit 1;";
 
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
