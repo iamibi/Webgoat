@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using OWASP.WebGoat.NET.App_Code.Hashing_Utility;
+using System.Web.Security.AntiXss;
 
 namespace OWASP.WebGoat.NET.App_Code.DB
 {
@@ -113,7 +114,8 @@ namespace OWASP.WebGoat.NET.App_Code.DB
         public bool IsValidCustomerLogin(string email, string password)
         {
             // Get the user with the email id from database.
-            string sqlQuery = "select * from CustomerLogin where email = '" + email + "' limit 1;";
+            string sqlQuery = "select * from CustomerLogin where email = '" + AntiXssEncoder.HtmlEncode(email, false) + "' limit 1;";
+            System.Diagnostics.Debug.WriteLine("sql query: " + sqlQuery);
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 MySqlDataAdapter da = new MySqlDataAdapter(sqlQuery, connection);
@@ -137,7 +139,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
 
                         // Using the same salt, generate the password hash. Since the salt is Base64 encoded, decode it first.
                         // Not using the Encoder.Decode library as it causes the string to add randome characters.
-                        var hashDigest = HashingAlgo.GetHashDigestUsingSalt(password, System.Convert.FromBase64String(salt));
+                        var hashDigest = HashingAlgo.GetHashDigestUsingSalt(AntiXssEncoder.HtmlEncode(password, false), System.Convert.FromBase64String(salt));
 
                         return hashDigest.Digest == storedDigest;
                     }
@@ -304,7 +306,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
 
         public string UpdateCustomerPassword(int customerNumber, string password)
         {
-            var hashResult = HashingAlgo.GetHashDigestWithSalt(password);
+            var hashResult = HashingAlgo.GetHashDigestWithSalt(AntiXssEncoder.HtmlEncode(password, false));
             string sql = "update CustomerLogin set password = '" + hashResult.Digest + "', salt = '" + hashResult.Salt + "' where customerNumber = " + customerNumber;
             string output = null;
             try
