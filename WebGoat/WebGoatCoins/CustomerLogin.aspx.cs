@@ -40,9 +40,13 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             string pwd = txtPassword.Text;
 
             log.Info("User " + email + " attempted to log in with password " + pwd);
-            int cn = du.CheckValidCustomerLogin(email, pwd);
 
             bool LoginEntry = CheckLoginEntry(email);
+
+            int cn = -1;
+            if (!LoginEntry)
+                cn = du.CheckValidCustomerLogin(email, pwd);
+
             if (cn == -1 || LoginEntry)
             {
                 labelError.Text = "Incorrect Login!";
