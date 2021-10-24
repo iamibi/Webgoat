@@ -158,6 +158,25 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             return cn;
         }
 
+        public bool IsEmailValid(string email)
+        {
+            if (email.Trim() == "")
+                return false;
+
+            string sql = "select * from CustomerLogin where email = '" + email + "';";
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                MySqlDataAdapter da = new MySqlDataAdapter(sql, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                if (ds.Tables[0].Rows.Count == 0)
+                    return false;
+            }
+
+            return true;
+        }
+
         public bool IsValidCustomerLogin(string email, string password)
         {
             //encode password

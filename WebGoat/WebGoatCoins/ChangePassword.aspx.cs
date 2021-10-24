@@ -21,7 +21,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
 
         protected void ButtonChangePassword_Click(object sender, EventArgs e)
         {
-            if(txtPassword1.Text != null && txtPassword2.Text != null && txtPassword1.Text == txtPassword2.Text)
+            if (txtPassword1.Text != null && txtPassword2.Text != null && txtPassword1.Text == txtPassword2.Text)
             {
                 //get customer ID
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(Request.Cookies["customer_login"].Value);

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using OWASP.WebGoat.NET.App_Code;
 using OWASP.WebGoat.NET.App_Code.DB;
+using OtpNet;
 
 namespace OWASP.WebGoat.NET
 {
@@ -24,11 +25,22 @@ namespace OWASP.WebGoat.NET
 
         protected void ButtonCheckEmail_Click(object sender, EventArgs e)
         {
-            string[] result = du.GetSecurityQuestionAndAnswer(txtEmail.Text);
+            string email = txtEmail.Text;
+
+            if (!du.IsEmailValid(email))
+            {
+                labelQuestion.Text = "";
+                PanelForgotPasswordStep2.Visible = false;
+                PanelForgotPasswordStep3.Visible = false;
+
+                return;
+            }
+
+            string[] result = du.GetSecurityQuestionAndAnswer(email);
             
             if (string.IsNullOrEmpty(result[0]))
             {
-                labelQuestion.Text = "That email address was not found in our database!";
+                labelQuestion.Text = "Invalid Email Address";
                 PanelForgotPasswordStep2.Visible = false;
                 PanelForgotPasswordStep3.Visible = false;
                 
@@ -78,5 +90,21 @@ namespace OWASP.WebGoat.NET
             return password;
         }
 
+        private bool SendVerificationEmail(string email)
+        {
+            string url = "";
+            string email_subject = "Recover Password on WebGoatCoins Portal";
+            string email_body = "Please follow the link to recover your password: " + url;
+
+            try
+            {
+                SendEmailUtil.SendEmail(email, email_subject, email_body);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

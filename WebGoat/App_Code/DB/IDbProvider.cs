@@ -30,7 +30,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
         string UpdateCustomerPassword(int customerNumber, string password);
 
         string[] GetSecurityQuestionAndAnswer(string email);
-
+        bool IsEmailValid(string email);
         string GetPasswordByEmail(string email);
 
         DataSet GetUsers();

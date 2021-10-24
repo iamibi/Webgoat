@@ -29,7 +29,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             
             if (string.IsNullOrEmpty(result[0]))
             {
-                labelQuestion.Text = "That email address was not found in our database!";
+                labelQuestion.Text = "";
                 PanelForgotPasswordStep2.Visible = false;
                 PanelForgotPasswordStep3.Visible = false;
                 

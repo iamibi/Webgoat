@@ -117,6 +117,27 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             return cn;
         }
 
+        public bool IsEmailValid(string email)
+        {
+            if (email.Trim() == "")
+                return false;
+
+            string sql = "select * from CustomerLogin where email = '" + email + "';";
+            using (SqliteConnection connection = new SqliteConnection(_connectionString))
+            {
+                connection.Open();
+
+                SqliteDataAdapter da = new SqliteDataAdapter(sql, connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                if (ds.Tables[0].Rows.Count == 0)
+                    return false;
+            }
+
+            return true;
+        }
+
         public bool IsValidCustomerLogin(string email, string password)
         {
             //encode password

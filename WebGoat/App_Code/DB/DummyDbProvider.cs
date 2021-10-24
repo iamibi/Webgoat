@@ -31,6 +31,11 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             return false;
         }
 
+        public bool IsEmailValid(string email)
+        {
+            return false;
+        }
+
         public bool RecreateGoatDb()
         {
             return false;
