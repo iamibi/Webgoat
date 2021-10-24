@@ -1089,6 +1089,7 @@
   </ProjectExtensions>
   <ItemGroup>
     <Folder Include="Configuration\" />
+    <Folder Include="WebGoatCoins\Logs\" />
     <Folder Include="WebGoatCoins\uploads\" />
   </ItemGroup>
   <ItemGroup>
