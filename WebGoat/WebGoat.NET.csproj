@@ -629,7 +629,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\CustomerLoginData.cs" />
-    <Compile Include="App_Code\OTPUtil.cs" />
     <Compile Include="App_Code\PasswordProvider.cs" />
     <Compile Include="App_Code\SendEmailUtil.cs" />
     <Compile Include="Content\ForgotPassword.aspx.cs">

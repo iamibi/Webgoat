@@ -657,7 +657,12 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             }
         }
 
-        public int GetCustomerIdFromEmail(string v)
+        public int GetCustomerId(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateDbWithToken(string email, string otp)
         {
             throw new NotImplementedException();
         }

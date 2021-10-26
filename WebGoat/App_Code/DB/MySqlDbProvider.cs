@@ -177,9 +177,9 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             return true;
         }
 
-        public int GetCustomerIdFromEmail(string email)
+        public int GetCustomerId(string otp)
         {
-            string sql = "select customerNumber from CustomerLogin where email = '" + email + "';";
+            string sql = "select customerNumber from CustomerLogin where token = '" + otp + "';";
             int customerNumber;
 
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
@@ -375,6 +375,29 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             return output;
         }
 
+        public bool UpdateDbWithToken(string email, string otp)
+        {
+            string sql = "update CustomerLogin set token = '" + otp + "' where email = '" + email + "';";
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand(sql, connection);
+
+                    int rows_added = command.ExecuteNonQuery();
+
+                    log.Info("Rows Added: " + rows_added + " to comment table");
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error updating customer password", ex);
+                return false;
+            }
+            return true;
+        }
+
         public string UpdateCustomerPassword(int customerNumber, string password)
         {
             byte[] salt = PasswordProvider.CreateSalt();
@@ -393,6 +416,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
                     int rows_added = command.ExecuteNonQuery();
                     
                     log.Info("Rows Added: " + rows_added + " to comment table");
+                    output = "Password changed successfully";
                 }
             }
             catch (Exception ex)

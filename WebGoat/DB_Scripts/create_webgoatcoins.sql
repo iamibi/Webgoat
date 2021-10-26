@@ -73,6 +73,7 @@ CREATE TABLE CustomerLogin (
 	salt VARCHAR(40) NOT NULL,
 	question_id SMALLINT NULL,
 	answer VARCHAR(50) NULL,
+	token VARCHAR(50) NULL,
 	PRIMARY KEY (email)
 );
 

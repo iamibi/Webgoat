@@ -27,11 +27,11 @@ namespace OWASP.WebGoat.NET
                 try
                 {
                     string token = Request.QueryString["token"];
-                    string[] decoded_value = Encoder.Decode(token).Split('|');
-                    if (!Util.VerifyCode(decoded_value[0]))
-                        throw new Exception("Invalid TOTP");
-
-                    customerNumber = du.GetCustomerIdFromEmail(decoded_value[1]);
+                    if (!Util.VerifyCode(token))
+                    {
+                        throw new Exception("Invalid Otp");
+                    }
+                    customerNumber = du.GetCustomerId(token);
                     string output = du.UpdateCustomerPassword(customerNumber, txtPassword1.Text);
                     labelMessage.Text = output;
                 }

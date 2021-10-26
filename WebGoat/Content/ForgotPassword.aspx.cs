@@ -93,13 +93,13 @@ namespace OWASP.WebGoat.NET
         private bool SendVerificationEmail(string email)
         {
             string totpCode = Util.GetTOTPCode();
-            string token_string = Encoder.Encode(totpCode + "|" + email);
-            string url = "http://localhost:52251/Content/ChangePwd.aspx?token=" + token_string;
+            string url = "http://localhost:52251/Content/ChangePwd.aspx?token=" + totpCode;
             string email_subject = "Change Password on WebGoatCoins Portal";
             string email_body = "Please follow the link to change your password: " + url;
 
             try
             {
+                du.UpdateDbWithToken(email, totpCode);
                 SendEmailUtil.SendEmail(email, email_subject, email_body);
             }
             catch

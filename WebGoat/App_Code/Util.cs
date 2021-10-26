@@ -5,13 +5,17 @@ using System.Reflection;
 using System.IO;
 using System.Threading;
 using OWASP.WebGoat.NET.App_Code;
+using OtpNet;
+using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace OWASP.WebGoat.NET.App_Code
 {
     public class Util
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        
+        private static readonly Totp OTP = new Totp(Encoding.ASCII.GetBytes(GetSecret()), mode: OtpHashMode.Sha512, step: 60);
+
         public static int RunProcessWithInput(string cmd, string args, string input)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
@@ -93,14 +97,28 @@ namespace OWASP.WebGoat.NET.App_Code
 
         public static string GetTOTPCode()
         {
-            return OTPUtil.Get().ComputeTotp(DateTime.UtcNow);
+            return OTP.ComputeTotp(DateTime.UtcNow);
         }
 
         public static bool VerifyCode(string code)
         {
             long timeStep;
-            bool valid = OTPUtil.Get().VerifyTotp(code, out timeStep);
+            bool valid = OTP.VerifyTotp(code, out timeStep, VerificationWindow.RfcSpecifiedNetworkDelay);
             return valid;
+        }
+
+        private static string GetSecret()
+        {
+            try
+            {
+                string json = File.ReadAllText("C:\\Users\\student\\Workspace\\SendEmailCredentials\\credentials.json");
+                dynamic creds = JObject.Parse(json);
+                return creds.shared_secret;
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
         }
     }
 }
