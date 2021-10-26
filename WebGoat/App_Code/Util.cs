@@ -100,7 +100,6 @@ namespace OWASP.WebGoat.NET.App_Code
         {
             long timeStep;
             bool valid = OTPUtil.Get().VerifyTotp(code, out timeStep);
-            System.Diagnostics.Debug.WriteLine("timeStep: " + timeStep.ToString());
             return valid;
         }
     }
