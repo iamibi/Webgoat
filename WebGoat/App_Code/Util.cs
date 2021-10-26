@@ -4,6 +4,7 @@ using log4net;
 using System.Reflection;
 using System.IO;
 using System.Threading;
+using OWASP.WebGoat.NET.App_Code;
 
 namespace OWASP.WebGoat.NET.App_Code
 {
@@ -88,6 +89,19 @@ namespace OWASP.WebGoat.NET.App_Code
                     return 1;
                 }
             }
+        }
+
+        public static string GetTOTPCode()
+        {
+            return OTPUtil.Get().ComputeTotp(DateTime.UtcNow);
+        }
+
+        public static bool VerifyCode(string code)
+        {
+            long timeStep;
+            bool valid = OTPUtil.Get().VerifyTotp(code, out timeStep);
+            System.Diagnostics.Debug.WriteLine("timeStep: " + timeStep.ToString());
+            return valid;
         }
     }
 }

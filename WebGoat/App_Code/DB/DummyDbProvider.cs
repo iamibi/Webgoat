@@ -131,6 +131,11 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             return null;
         }
 
+        public int GetCustomerIdFromEmail(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         public string Name
         {
             get { return "Dummy"; }

@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using OWASP.WebGoat.NET.App_Code;
 using OWASP.WebGoat.NET.App_Code.DB;
-using OtpNet;
 
 namespace OWASP.WebGoat.NET
 {
@@ -45,7 +44,7 @@ namespace OWASP.WebGoat.NET
                 PanelForgotPasswordStep3.Visible = false;
                 
                 return;
-            }    
+            }
             labelQuestion.Text = "Here is the question we have on file for you: <strong>" + result[0] + "</strong>";
             PanelForgotPasswordStep2.Visible = true;
             PanelForgotPasswordStep3.Visible = false;
@@ -72,10 +71,11 @@ namespace OWASP.WebGoat.NET
                 
                 if (security_answer.Trim().ToLower().Equals(txtAnswer.Text.Trim().ToLower()))
                 {
+                    SendVerificationEmail(txtEmail.Text);
                     PanelForgotPasswordStep1.Visible = false;
                     PanelForgotPasswordStep2.Visible = false;
                     PanelForgotPasswordStep3.Visible = true;
-                    labelPassword.Text = "Security Question Challenge Successfully Completed! <br/>Your password is: " + getPassword(txtEmail.Text);
+                    labelPassword.Text = "An email has been sent to the registered email address for changing the password.";
                 }
             }
             catch (Exception ex)
@@ -92,9 +92,11 @@ namespace OWASP.WebGoat.NET
 
         private bool SendVerificationEmail(string email)
         {
-            string url = "";
-            string email_subject = "Recover Password on WebGoatCoins Portal";
-            string email_body = "Please follow the link to recover your password: " + url;
+            string totpCode = Util.GetTOTPCode();
+            string token_string = Encoder.Encode(totpCode + "|" + email);
+            string url = "http://localhost:52251/Content/ChangePwd.aspx?token=" + token_string;
+            string email_subject = "Change Password on WebGoatCoins Portal";
+            string email_body = "Please follow the link to change your password: " + url;
 
             try
             {

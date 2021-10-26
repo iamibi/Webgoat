@@ -38,7 +38,7 @@ namespace OWASP.WebGoat.NET.App_Code.DB
         DataSet GetOrders(int customerID);
 
         DataSet GetProductDetails(string productCode);
-
+        int GetCustomerIdFromEmail(string v);
         DataSet GetOrderDetails(int orderNumber);
 
         DataSet GetPayments(int customerNumber);

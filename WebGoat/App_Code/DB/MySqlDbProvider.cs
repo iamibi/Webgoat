@@ -177,6 +177,21 @@ namespace OWASP.WebGoat.NET.App_Code.DB
             return true;
         }
 
+        public int GetCustomerIdFromEmail(string email)
+        {
+            string sql = "select customerNumber from CustomerLogin where email = '" + email + "';";
+            int customerNumber;
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand(sql, connection);
+                string output = command.ExecuteScalar().ToString();
+                customerNumber = int.Parse(output);
+            }
+            return customerNumber;
+        }
+
         public bool IsValidCustomerLogin(string email, string password)
         {
             //encode password

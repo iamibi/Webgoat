@@ -16,7 +16,6 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
         
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void ButtonChangePassword_Click(object sender, EventArgs e)
