@@ -71,7 +71,8 @@ namespace OWASP.WebGoat.NET
                 
                 if (security_answer.Trim().ToLower().Equals(txtAnswer.Text.Trim().ToLower()))
                 {
-                    SendVerificationEmail(txtEmail.Text);
+                    if (!SendVerificationEmail(txtEmail.Text))
+                        throw new Exception("An error occurred while trying to send the email.");
                     PanelForgotPasswordStep1.Visible = false;
                     PanelForgotPasswordStep2.Visible = false;
                     PanelForgotPasswordStep3.Visible = true;
