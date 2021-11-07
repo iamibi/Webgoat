@@ -12,7 +12,7 @@
         </asp:Literal>
     </div>
 
-    <asp:Label ID="lblOutput" runat="server" Text=""></asp:Label>
+    <asp:Label ID="lblOutput" runat="server" Text="">
 
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
         CellPadding="4" EnableModelValidation="True" ForeColor="#333333" 
@@ -25,6 +25,7 @@
         <RowStyle BackColor="#EFF3FB" />
         <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
     </asp:GridView>
+        </asp:Label>
 
     
     <asp:Panel ID="PanelShowDetailSuccess" runat="server" Visible="false">
