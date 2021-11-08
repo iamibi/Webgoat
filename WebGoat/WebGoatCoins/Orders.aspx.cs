@@ -19,89 +19,108 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            int id;
-            DataSet ds;
-            if (Request.Cookies["customerNumber"] == null || !int.TryParse(Request.Cookies["customerNumber"].Value.ToString(), out id))
-                lblOutput.Text = "Sorry, an unspecified problem regarding your Customer ID has occurred.  Are your cookies enabled?";
-            else
+            if (Session["LoggedIn"] != null && Session["AuthToken"] != null && Request.Cookies["AuthToken"] != null)
             {
-                ds = du.GetOrders(id);
-
-                if (!Page.IsPostBack) //generate the data grid
+                if (!Session["AuthToken"].ToString().Equals(Request.Cookies["AuthToken"].Value))
                 {
-                    GridView1.DataSource = ds.Tables[0];
-
-                    GridView1.AutoGenerateColumns = false;
-
-                    BoundField BoundFieldOrderNumber = new BoundField();
-                    BoundField BoundFieldStatus = new BoundField();
-                    BoundField BoundFieldRequiredDate = new BoundField();
-                    BoundField BoundFieldShippedDate = new BoundField();
-
-                    BoundFieldOrderNumber.DataField = "orderNumber";
-                    BoundFieldStatus.DataField = "status";
-                    BoundFieldRequiredDate.DataField = "requiredDate";
-                    BoundFieldShippedDate.DataField = "shippedDate";
-
-                    BoundFieldOrderNumber.HeaderText = "Order Number";
-                    BoundFieldStatus.HeaderText = "Status";
-                    BoundFieldRequiredDate.HeaderText = "Required Date";
-                    BoundFieldShippedDate.HeaderText = "Shipped Date";
-
-                    BoundFieldRequiredDate.DataFormatString = "{0:MM/dd/yyyy}";
-                    BoundFieldShippedDate.DataFormatString = "{0:MM/dd/yyyy}";
-
-                    GridView1.Columns.Add(BoundFieldOrderNumber);
-                    GridView1.Columns.Add(BoundFieldStatus);
-                    GridView1.Columns.Add(BoundFieldRequiredDate);
-                    GridView1.Columns.Add(BoundFieldShippedDate);
-
-                    GridView1.DataBind();
+                    // redirect to the login page in real 
+                    lblOutput.Text = "You are not logged in.";
+                    Response.Redirect("/WebGoatCoins/CustomerLogin.aspx");
+                    return;
                 }
-                //check if orderNumber exists
-                string orderNumber = Request["orderNumber"];
-                if (orderNumber != null)
+                else
                 {
-                    try
+                    int id;
+                    DataSet ds;
+                    if (Request.Cookies["customerNumber"] == null || !int.TryParse(Request.Cookies["customerNumber"].Value.ToString(), out id))
+                        lblOutput.Text = "Sorry, an unspecified problem regarding your Customer ID has occurred.  Are your cookies enabled?";
+                    else
                     {
-                        //lblOutput.Text = orderNumber;
-                        DataSet dsOrderDetails = du.GetOrderDetails(int.Parse(orderNumber));
-                        DetailsView1.DataSource = dsOrderDetails.Tables[0];
-                        DetailsView1.DataBind();
-                        //litOrderDetails.Visible = true;
-                        PanelShowDetailSuccess.Visible = true;
+                        ds = du.GetOrders(id);
 
-                        //allow customer to download image of their product
-                        string image = dsOrderDetails.Tables[0].Rows[0]["productImage"].ToString();
-                        HyperLink1.Text = "Download Product Image";
-                        HyperLink1.NavigateUrl = Request.RawUrl + "&image=images/products/" + image;
-                    }
-                    catch (Exception ex)
-                    {
-                        //litOrderDetails.Text = "Error finding order number " + orderNumber + ". Details: " + ex.Message;
-                        PanelShowDetailFailure.Visible = true;
-                        litErrorDetailMessage.Text = "Error finding order number " + orderNumber + ". Details: " + ex.Message;
+                        if (!Page.IsPostBack) //generate the data grid
+                        {
+                            GridView1.DataSource = ds.Tables[0];
+
+                            GridView1.AutoGenerateColumns = false;
+
+                            BoundField BoundFieldOrderNumber = new BoundField();
+                            BoundField BoundFieldStatus = new BoundField();
+                            BoundField BoundFieldRequiredDate = new BoundField();
+                            BoundField BoundFieldShippedDate = new BoundField();
+
+                            BoundFieldOrderNumber.DataField = "orderNumber";
+                            BoundFieldStatus.DataField = "status";
+                            BoundFieldRequiredDate.DataField = "requiredDate";
+                            BoundFieldShippedDate.DataField = "shippedDate";
+
+                            BoundFieldOrderNumber.HeaderText = "Order Number";
+                            BoundFieldStatus.HeaderText = "Status";
+                            BoundFieldRequiredDate.HeaderText = "Required Date";
+                            BoundFieldShippedDate.HeaderText = "Shipped Date";
+
+                            BoundFieldRequiredDate.DataFormatString = "{0:MM/dd/yyyy}";
+                            BoundFieldShippedDate.DataFormatString = "{0:MM/dd/yyyy}";
+
+                            GridView1.Columns.Add(BoundFieldOrderNumber);
+                            GridView1.Columns.Add(BoundFieldStatus);
+                            GridView1.Columns.Add(BoundFieldRequiredDate);
+                            GridView1.Columns.Add(BoundFieldShippedDate);
+
+                            GridView1.DataBind();
+                        }
+                        //check if orderNumber exists
+                        string orderNumber = Request["orderNumber"];
+                        if (orderNumber != null)
+                        {
+                            try
+                            {
+                                //lblOutput.Text = orderNumber;
+                                DataSet dsOrderDetails = du.GetOrderDetails(int.Parse(orderNumber));
+                                DetailsView1.DataSource = dsOrderDetails.Tables[0];
+                                DetailsView1.DataBind();
+                                //litOrderDetails.Visible = true;
+                                PanelShowDetailSuccess.Visible = true;
+
+                                //allow customer to download image of their product
+                                string image = dsOrderDetails.Tables[0].Rows[0]["productImage"].ToString();
+                                HyperLink1.Text = "Download Product Image";
+                                HyperLink1.NavigateUrl = Request.RawUrl + "&image=images/products/" + image;
+                            }
+                            catch (Exception ex)
+                            {
+                                //litOrderDetails.Text = "Error finding order number " + orderNumber + ". Details: " + ex.Message;
+                                PanelShowDetailFailure.Visible = true;
+                                litErrorDetailMessage.Text = "Error finding order number " + orderNumber + ". Details: " + ex.Message;
+                            }
+                        }
+
+                        //check if they are trying to download the image
+                        string target_image = Request["image"];
+                        if (target_image != null)
+                        {
+                            FileInfo fi = new FileInfo(Server.MapPath(target_image));
+                            lblOutput.Text = fi.FullName;
+
+                            NameValueCollection imageExtensions = new NameValueCollection();
+                            imageExtensions.Add(".jpg", "image/jpeg");
+                            imageExtensions.Add(".gif", "image/gif");
+                            imageExtensions.Add(".png", "image/png");
+
+                            Response.ContentType = imageExtensions.Get(fi.Extension);
+                            Response.AppendHeader("Content-Disposition", "attachment; filename=" + fi.Name);
+                            Response.TransmitFile(fi.FullName);
+                            Response.End();
+                        }
+
                     }
                 }
-
-                //check if they are trying to download the image
-                string target_image = Request["image"];
-                if (target_image != null)
-                {
-                    FileInfo fi = new FileInfo(Server.MapPath(target_image));
-                    lblOutput.Text = fi.FullName;
-
-                    NameValueCollection imageExtensions = new NameValueCollection();
-                    imageExtensions.Add(".jpg", "image/jpeg");
-                    imageExtensions.Add(".gif", "image/gif");
-                    imageExtensions.Add(".png", "image/png");
-
-                    Response.ContentType = imageExtensions.Get(fi.Extension);
-                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + fi.Name);
-                    Response.TransmitFile(fi.FullName);
-                    Response.End();
-                }
-
+            }
+            else 
+            {
+                lblOutput.Text = "You are not logged in.";
+                Response.Redirect("/WebGoatCoins/CustomerLogin.aspx");
+                return;
             }
         }
 

@@ -43,6 +43,13 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
                 return;
             }
 
+            Session["LoggedIn"] = email.Trim();
+            // createa a new GUID and save into the session
+            string guid = Guid.NewGuid().ToString();
+            Session["AuthToken"] = guid;
+            // now create a new cookie with this guid value
+            Response.Cookies.Add(new HttpCookie("AuthToken", guid));
+
             // put ticket into the cookie
             FormsAuthenticationTicket ticket =
                         new FormsAuthenticationTicket(
