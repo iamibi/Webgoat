@@ -19,6 +19,23 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["LoggedIn"] != null && Session["AuthToken"] != null && Request.Cookies["AuthToken"] != null)
+            {
+                if (!Session["AuthToken"].ToString().Equals(Request.Cookies["AuthToken"].Value))
+                {
+                    // redirect to the login page in real 
+                    lblOutput.Text = "You are not logged in.";
+                    Response.Redirect("/WebGoatCoins/CustomerLogin.aspx");
+                    return;
+                }
+            }
+            else
+            {
+                lblOutput.Text = "You are not logged in.";
+                Response.Redirect("/WebGoatCoins/CustomerLogin.aspx");
+                return;
+            }
+
             int id;
             DataSet ds;
             if (Request.Cookies["customerNumber"] == null || !int.TryParse(Request.Cookies["customerNumber"].Value.ToString(), out id))
