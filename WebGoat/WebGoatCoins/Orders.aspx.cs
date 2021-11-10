@@ -44,6 +44,25 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             {
                 ds = du.GetOrders(id);
 
+                if (Request["orderNumber"] != null)
+                {
+                    bool flag = false;
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        if (dr["orderNumber"].ToString() == Request["orderNumber"])
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+
+                    if (!flag)
+                    {
+                        lblOutput.Text = "Sorry, Invalid order number.";
+                        return;
+                    }
+                }
+
                 if (!Page.IsPostBack) //generate the data grid
                 {
                     GridView1.DataSource = ds.Tables[0];
