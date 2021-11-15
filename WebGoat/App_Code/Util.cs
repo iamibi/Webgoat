@@ -9,8 +9,9 @@ namespace OWASP.WebGoat.NET.App_Code
 {
     public class Util
     {
-        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        
+        //private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = LogManager.GetLogger("NOTIFY");
+
         public static int RunProcessWithInput(string cmd, string args, string input)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo

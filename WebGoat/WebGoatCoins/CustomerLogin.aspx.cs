@@ -15,8 +15,9 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
     public partial class CustomerLogin : System.Web.UI.Page
     {
         private IDbProvider du = Settings.CurrentDbProvider;
-        ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        
+        //ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        ILog log = LogManager.GetLogger("NOTIFY");
+
         protected void Page_Load(object sender, EventArgs e)
         {
             PanelError.Visible = false;
@@ -34,13 +35,15 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             string pwd = txtPassword.Text;
 
             log.Info("User " + email + " attempted to log in with password " + pwd);
+            int cn = du.CheckValidCustomerLogin(email, pwd);
 
-            if (!du.IsValidCustomerLogin(email, pwd))
+            if (cn == -1)
             {
-                labelError.Text = "Incorrect username/password"; 
+                labelError.Text = "Incorrect Login!"; 
                 PanelError.Visible = true;
                 return;
             }
+
             // put ticket into the cookie
             FormsAuthenticationTicket ticket =
                         new FormsAuthenticationTicket(
@@ -49,7 +52,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
                             DateTime.Now, //issueDate
                             DateTime.Now.AddDays(14), //expireDate 
                             true, //isPersistent
-                            "customer", //userData (customer role)
+                            cn.ToString(), //userData (customer role)
                             FormsAuthentication.FormsCookiePath //cookiePath
             );
 
@@ -62,6 +65,9 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             if (ticket.IsPersistent)
                 cookie.Expires = ticket.Expiration;
                 
+            Response.Cookies.Add(cookie);
+
+            cookie = new HttpCookie("customerNumber", cn.ToString());
             Response.Cookies.Add(cookie);
             
             string returnUrl = Request.QueryString["ReturnUrl"];

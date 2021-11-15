@@ -16,13 +16,13 @@ namespace OWASP.WebGoat.NET.Content {
 		protected System.Web.UI.WebControls.Content Content1;
 		
 		protected System.Web.UI.WebControls.Content Content2;
-		
+
 		protected System.Web.UI.WebControls.TextBox txtBoxMsg;
-		
+
 		protected System.Web.UI.WebControls.Button btnReverse;
-		
+
 		protected System.Web.UI.WebControls.Label lblReverse;
-		
+
 		protected System.Web.UI.WebControls.Content Content3;
 	}
 }

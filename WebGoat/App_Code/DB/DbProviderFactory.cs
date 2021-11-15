@@ -9,8 +9,9 @@ namespace OWASP.WebGoat.NET.App_Code.DB
     //NOT THREAD SAFE!
     public class DbProviderFactory
     {
-        private static ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        
+        //private static ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static ILog log = LogManager.GetLogger("NOTIFY");
+
         public static IDbProvider Create(ConfigFile configFile)
         {
             configFile.Load();
