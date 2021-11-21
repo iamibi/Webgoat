@@ -391,3 +391,27 @@ INFO  2021-11-16 17:19:55,852   100ms NOTIFY                 Create             
 DEBUG 2021-11-16 17:24:07,886    54ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
 DEBUG 2021-11-16 17:24:07,928    95ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
 INFO  2021-11-16 17:24:07,934   102ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-21 10:59:34,429    78ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-21 10:59:35,428  1076ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-21 10:59:35,504  1152ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-21 11:02:30,556    46ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-21 11:02:30,621   110ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-21 11:02:30,647   136ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-21 11:08:45,461    44ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-21 11:08:45,496    79ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-21 11:08:45,503    86ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-21 11:10:54,712    43ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-21 11:10:54,760    90ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-21 11:10:54,767    97ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-21 11:12:35,231    52ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-21 11:12:35,277    98ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-21 11:12:35,285   105ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-21 11:21:25,419    48ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-21 11:21:25,456    85ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-21 11:21:25,462    91ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-21 11:25:18,332    58ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-21 11:25:18,367    94ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-21 11:25:18,373   100ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-21 11:26:08,745    54ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-21 11:26:08,779    88ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-21 11:26:08,786    95ms NOTIFY                 Create             - Creating provider forMySql

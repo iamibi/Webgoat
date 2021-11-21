@@ -14,6 +14,13 @@ namespace OWASP.WebGoat.NET.Content
             const string msg = "passwor";
             const int INPUT_LEN = 256;
             char[] fixedChar = new char[INPUT_LEN];
+            string text = txtBoxMsg.Text;
+
+            if (text.Length >= 256)
+            {
+                lblReverse.Text = "String length too long";
+                return;
+            }
 
             for (int i = 0; i < fixedChar.Length; i++)
                 fixedChar[i] = '\0';
