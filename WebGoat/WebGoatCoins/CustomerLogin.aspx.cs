@@ -9,6 +9,7 @@ using OWASP.WebGoat.NET.App_Code.DB;
 using OWASP.WebGoat.NET.App_Code;
 using log4net;
 using System.Reflection;
+using Ganss.XSS;
 
 namespace OWASP.WebGoat.NET.WebGoatCoins
 {
@@ -17,6 +18,8 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
         private IDbProvider du = Settings.CurrentDbProvider;
         //ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         ILog log = LogManager.GetLogger("NOTIFY");
+
+        private readonly HtmlSanitizer htmlSanitizer = new HtmlSanitizer();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +37,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             string email = txtUserName.Text;
             string pwd = txtPassword.Text;
 
-            log.Info("User " + email + " attempted to log in with password " + pwd);
+            log.Info("User " + htmlSanitizer.Sanitize(email) + " attempted to log in");
             int cn = du.CheckValidCustomerLogin(email, pwd);
 
             if (cn == -1)

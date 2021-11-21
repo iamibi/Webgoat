@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using Ganss.XSS;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
     public partial class Logout : System.Web.UI.Page
     {
         ILog log = LogManager.GetLogger("NOTIFY");
+        private readonly HtmlSanitizer htmlSanitizer = new HtmlSanitizer();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,7 +26,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             {
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(Request.Cookies["customer_login"].Value);
                 string customerEmail = ticket.Name;
-                log.Info("User " + customerEmail + " performed a logout.");
+                log.Info("User " + htmlSanitizer.Sanitize(customerEmail) + " performed a logout.");
 
             }
             FormsAuthentication.SignOut();
