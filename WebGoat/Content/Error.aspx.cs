@@ -44,6 +44,8 @@ namespace OWASP.WebGoat.NET
                 }
                 finally
                 {
+                    string filepath = Server.MapPath("~/WebGoatCoins/uploads/") + Path.GetFileName(FileUpload1.FileName);
+                    if (File.Exists(filepath)) File.Delete(filepath);
                     labelUpload.Visible = true;
                 }
             }
