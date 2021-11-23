@@ -35,8 +35,6 @@ namespace OWASP.WebGoat.NET
                     }
                     long sum = firstNum + secondNum;
                     labelUpload.Text = "<div class='success' style='text-align:center'>The sum is " + sum + "</div>";
-                    File.Delete(filepath);
-
                 }
                 catch (Exception ex)
                 {
