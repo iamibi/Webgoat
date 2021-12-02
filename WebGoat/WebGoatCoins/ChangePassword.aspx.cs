@@ -28,17 +28,10 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
                 string customerEmail = ticket.Name;
                 string customerNumber = ticket.UserData;
 
-                if (HttpContext.Current.IsDebuggingEnabled)
-                {
-                    customerNumber = "112";
-                }
                 if (customerNumber != null)
                 {
                     string output = du.UpdateCustomerPassword(int.Parse(customerNumber), txtPassword1.Text);
-                    if (HttpContext.Current.IsDebuggingEnabled)
-                        labelMessage.Text = "Password changed to " + txtPassword1.Text;
-                    else
-                        labelMessage.Text = output;
+                    labelMessage.Text = output;
                 }
             }
             else

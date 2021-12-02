@@ -21,7 +21,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
         {
             int id=-1;
             DataSet ds;
-            if ((Request.Cookies["customerNumber"] == null || !int.TryParse(Request.Cookies["customerNumber"].Value.ToString(), out id)) && !HttpContext.Current.IsDebuggingEnabled)
+            if (Request.Cookies["customerNumber"] == null || !int.TryParse(Request.Cookies["customerNumber"].Value.ToString(), out id))
                 lblOutput.Text = "Sorry, an unspecified problem regarding your Customer ID has occurred.  Are your cookies enabled?";
             else
             {
@@ -60,10 +60,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
                 }
                 //check if orderNumber exists
                 string orderNumber = Request["orderNumber"];
-                if (HttpContext.Current.IsDebuggingEnabled)
-                {
-                    orderNumber = "10278";
-                }
+                
                 if (orderNumber != null)
                 {
                     try

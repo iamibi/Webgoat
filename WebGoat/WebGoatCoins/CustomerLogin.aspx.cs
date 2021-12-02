@@ -37,13 +37,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             log.Debug("User " + email + " attempted to log in with password " + pwd);
 
             int cn = -1;
-            if(!HttpContext.Current.IsDebuggingEnabled) { 
-                cn = du.CheckValidCustomerLogin(email, pwd);
-            } else
-            {
-                email = "jerry@goatgoldstore.net";
-                cn = 112;
-            }
+            cn = du.CheckValidCustomerLogin(email, pwd);
 
             if (cn == -1)
             {
