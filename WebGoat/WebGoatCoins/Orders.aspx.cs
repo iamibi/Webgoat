@@ -19,15 +19,15 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            int id;
+            int id=-1;
             DataSet ds;
-            if (Request.Cookies["customerNumber"] == null || !int.TryParse(Request.Cookies["customerNumber"].Value.ToString(), out id))
+            if ((Request.Cookies["customerNumber"] == null || !int.TryParse(Request.Cookies["customerNumber"].Value.ToString(), out id)) && !HttpContext.Current.IsDebuggingEnabled)
                 lblOutput.Text = "Sorry, an unspecified problem regarding your Customer ID has occurred.  Are your cookies enabled?";
             else
             {
                 ds = du.GetOrders(id);
 
-                if (!Page.IsPostBack) //generate the data grid
+                if (!Page.IsPostBack && ds != null) //generate the data grid
                 {
                     GridView1.DataSource = ds.Tables[0];
 
@@ -60,6 +60,10 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
                 }
                 //check if orderNumber exists
                 string orderNumber = Request["orderNumber"];
+                if (HttpContext.Current.IsDebuggingEnabled)
+                {
+                    orderNumber = "10278";
+                }
                 if (orderNumber != null)
                 {
                     try

@@ -15,16 +15,20 @@ namespace OWASP.WebGoat.NET
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            if (Debugger.IsAttached)
-                BasicConfigurator.Configure();
-            else
-                XmlConfigurator.Configure();
+            //if (Debugger.IsAttached)
+            //    BasicConfigurator.Configure();
+            //else
+                log4net.Config.XmlConfigurator.Configure();
             
             Settings.Init(Server);
         }
 
         protected void Session_Start(object sender, EventArgs e)
         {
+            if (Response.Cookies.Count > 0)
+                foreach (string s in Response.Cookies.AllKeys)
+                    if (s == System.Web.Security.FormsAuthentication.FormsCookieName || s.ToLower().Equals("asp.net_sessionid"))
+                        Response.Cookies[s].HttpOnly = false;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -74,6 +78,17 @@ namespace OWASP.WebGoat.NET
         protected void Application_End(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            if (Response.Cookies.Count > 0)
+            {
+                foreach (string s in Response.Cookies.AllKeys)
+                {
+                    Response.Cookies[s].HttpOnly = false;
+                }
+            }
         }
     }
 }

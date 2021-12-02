@@ -21,8 +21,9 @@ namespace OWASP.WebGoat.NET.App_Code
         private static object _lock = new object();
         private static bool _inited = false;
 
-        private static ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-  
+        //private static ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static ILog log = LogManager.GetLogger("NOTIFY");
+
         public static void Init(HttpServerUtility server)
         {
             lock (_lock)

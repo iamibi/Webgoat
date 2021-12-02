@@ -7,47 +7,35 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OWASP.WebGoat.NET.Content
-{
-
-
-    public partial class MessageDigest
-    {
-
+namespace OWASP.WebGoat.NET {
+    
+    
+    public partial class Clickjacking {
         /// <summary>
-        /// lblDigest control.
+        /// labelMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDigest;
-
+        protected global::System.Web.UI.WebControls.Label labelMessage;
+        
         /// <summary>
-        /// txtBoxMsg control.
+        /// btnOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxMsg;
+        protected global::System.Web.UI.WebControls.Button btnOrder;
 
         /// <summary>
-        /// btnDigest control.
+        /// lnkReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDigest;
-
-        /// <summary>
-        /// lblResultDigest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblResultDigest;
+        protected global::System.Web.UI.WebControls.LinkButton lnkReset;
     }
 }

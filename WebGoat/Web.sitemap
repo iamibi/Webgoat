@@ -23,7 +23,17 @@
         </siteMapNode>
 		<siteMapNode url="~/Content/AuthenticationAuthorization.aspx" title="Authentication and Authorization Issues" description="Authentication and Authorization Issues">
 			<siteMapNode url="~/Content/ForgotPassword.aspx" title="Insecure Forgot Password" description="Insecure Forgot Password" />
+		    <siteMapNode url="~/Content/Clickjacking.aspx" title="Clickjacking Target" description="Clickjacking Target" />
+            <siteMapNode url="~/Content/ClickjackingExploit.aspx" title="Clickjacking Exploit" description="Clickjacking Exploit" />
 		</siteMapNode>
+	    <siteMapNode url="~/Content/ErrorHandlingLogging.aspx" title="Error Handling and Logging Issues" description="Error Handling and Logging Issues">
+		    <siteMapNode url="~/Content/Unsafe.aspx" title="Unsafe blocks" description="Unsafe blocks" />
+			<siteMapNode url="~/Content/VerbTampering.aspx" title="Verb Tampering Page" description="Verb Tampering Page" />
+			<!--<siteMapNode url="~/Content/VerbTamperingAttack.aspx" title="Verb Tampering Attack" description="Verb Tampering Attack" />-->
+		    <siteMapNode url="~/Content/Error.aspx" title="Erroring Page" description="Poor Error Handling" />
+		    <siteMapNode url="~/Content/EmbeddedError.aspx" title="Embedded Error Page" description="Embedded Error Page" />
+			<siteMapNode url="~/Content/LogInjection.aspx" title="Log Injection Page" description="Log Injection Page" />
+	    </siteMapNode>
         <siteMapNode url="~/WebGoatCoins/Welcome.aspx" title="WebGoat Coins Customer Portal" description="Coins Customer Portal">
             <siteMapNode url="~/WebGoatCoins/CustomerLogin.aspx" title="Customer Login" description="Customer Login" />
             <siteMapNode url="~/WebGoatCoins/ForgotPassword.aspx" title="Forgot Password" description="Forgot Password" />

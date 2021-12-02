@@ -15,7 +15,7 @@ namespace OWASP.WebGoat.NET.Content
 
         public void Page_Load(object sender, EventArgs args)
         {
-            lblDigest.Text = WeakMessageDigest.GenerateWeakDigest(MSG);
+            lblResultDigest.Text = WeakMessageDigest.GenerateWeakDigest(MSG);
         }
 
         public void btnDigest_Click(object sender, EventArgs args)

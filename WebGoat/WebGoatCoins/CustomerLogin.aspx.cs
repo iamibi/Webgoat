@@ -15,8 +15,9 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
     public partial class CustomerLogin : System.Web.UI.Page
     {
         private IDbProvider du = Settings.CurrentDbProvider;
-        ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        
+        //ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        ILog log = LogManager.GetLogger("NOTIFY");
+
         protected void Page_Load(object sender, EventArgs e)
         {
             PanelError.Visible = false;
@@ -33,14 +34,24 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             string email = txtUserName.Text;
             string pwd = txtPassword.Text;
 
-            log.Info("User " + email + " attempted to log in with password " + pwd);
+            log.Debug("User " + email + " attempted to log in with password " + pwd);
 
-            if (!du.IsValidCustomerLogin(email, pwd))
+            int cn = -1;
+            if(!HttpContext.Current.IsDebuggingEnabled) { 
+                cn = du.CheckValidCustomerLogin(email, pwd);
+            } else
             {
-                labelError.Text = "Incorrect username/password"; 
+                email = "jerry@goatgoldstore.net";
+                cn = 112;
+            }
+
+            if (cn == -1)
+            {
+                labelError.Text = "Incorrect Login!"; 
                 PanelError.Visible = true;
                 return;
             }
+
             // put ticket into the cookie
             FormsAuthenticationTicket ticket =
                         new FormsAuthenticationTicket(
@@ -49,7 +60,7 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
                             DateTime.Now, //issueDate
                             DateTime.Now.AddDays(14), //expireDate 
                             true, //isPersistent
-                            "customer", //userData (customer role)
+                            cn.ToString(), //userData (customer role)
                             FormsAuthentication.FormsCookiePath //cookiePath
             );
 
@@ -62,6 +73,9 @@ namespace OWASP.WebGoat.NET.WebGoatCoins
             if (ticket.IsPersistent)
                 cookie.Expires = ticket.Expiration;
                 
+            Response.Cookies.Add(cookie);
+
+            cookie = new HttpCookie("customerNumber", cn.ToString());
             Response.Cookies.Add(cookie);
             
             string returnUrl = Request.QueryString["ReturnUrl"];

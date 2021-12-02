@@ -27,5 +27,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HelpContentPlaceholder" runat="server">
-
+   .NET platform allows for 'unsafe' blocks of code to be specified that allow developers to directly work with pointers and memory unsafe operations. 
+    Try to enter an input that will cause an exception in the ASP.NET application.
 </asp:Content>

@@ -18,7 +18,8 @@
     
     <p><asp:Button ID="btnDigest" runat="server" onclick="btnDigest_Click" 
             Text="Digest Message!" SkinID="Button"/></p>
-    <p>Result: <asp:Label ID="lblResultDigest" runat="server" /></p>
+    <p>Result: 
+        <asp:Label ID="lblResultDigest" runat="server" /></p>
 
     
 </asp:Content>

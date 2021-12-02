@@ -1,0 +1,391 @@
+DEBUG 2021-11-15 10:10:08,109    61ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-15 10:10:08,146    98ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-15 10:10:08,153   105ms NOTIFY                 Create             - Creating provider forMySql
+INFO  2021-11-15 10:10:17,355  9307ms NOTIFY                 Create             - Creating provider forMySql
+INFO  2021-11-15 10:10:17,407  9359ms NOTIFY                 RecreateGoatDb     - Running recreate
+DEBUG 2021-11-15 10:10:17,441  9392ms NOTIFY                 unProcessWithInput - Line: /******************************************************************************
+DEBUG 2021-11-15 10:10:17,458  9410ms NOTIFY                 unProcessWithInput - Line:  * Copyright (c) 2005 Actuate Corporation.
+DEBUG 2021-11-15 10:10:17,463  9415ms NOTIFY                 unProcessWithInput - Line:  * All rights reserved. This file and the accompanying materials
+DEBUG 2021-11-15 10:10:17,466  9418ms NOTIFY                 unProcessWithInput - Line:  * are made available under the terms of the Eclipse Public License v1.0
+DEBUG 2021-11-15 10:10:17,472  9424ms NOTIFY                 unProcessWithInput - Line:  * which accompanies this distribution, and is available at
+DEBUG 2021-11-15 10:10:17,475  9427ms NOTIFY                 unProcessWithInput - Line:  * http://www.eclipse.org/legal/epl-v10.html
+DEBUG 2021-11-15 10:10:17,486  9438ms NOTIFY                 unProcessWithInput - Line:  *
+DEBUG 2021-11-15 10:10:17,490  9442ms NOTIFY                 unProcessWithInput - Line:  * Contributors:
+DEBUG 2021-11-15 10:10:17,496  9448ms NOTIFY                 unProcessWithInput - Line:  *  Actuate Corporation  - initial implementation
+DEBUG 2021-11-15 10:10:17,498  9450ms NOTIFY                 unProcessWithInput - Line:  *
+DEBUG 2021-11-15 10:10:17,507  9458ms NOTIFY                 unProcessWithInput - Line:  * Classic Models Inc. sample database developed as part of the
+DEBUG 2021-11-15 10:10:17,514  9466ms NOTIFY                 unProcessWithInput - Line:  * Eclipse BIRT Project. For more information, see http:\\www.eclipse.org\birt
+DEBUG 2021-11-15 10:10:17,523  9475ms NOTIFY                 unProcessWithInput - Line:  *
+DEBUG 2021-11-15 10:10:17,536  9488ms NOTIFY                 unProcessWithInput - Line:  *******************************************************************************/
+DEBUG 2021-11-15 10:10:17,541  9493ms NOTIFY                 unProcessWithInput - Line: /*******************************************************************************
+DEBUG 2021-11-15 10:10:17,546  9498ms NOTIFY                 unProcessWithInput - Line: * Changes made Jan 2012 - Copyright 2012
+DEBUG 2021-11-15 10:10:17,555  9507ms NOTIFY                 unProcessWithInput - Line: * Updated BIRT to be the webgoat coins database
+DEBUG 2021-11-15 10:10:17,558  9510ms NOTIFY                 unProcessWithInput - Line: * Images copyright US Mint and the Perth Mint
+DEBUG 2021-11-15 10:10:17,562  9514ms NOTIFY                 unProcessWithInput - Line: * Contributers:
+DEBUG 2021-11-15 10:10:17,566  9518ms NOTIFY                 unProcessWithInput - Line: *	Jerry Hoff - Infrared Security, LLC
+DEBUG 2021-11-15 10:10:17,568  9520ms NOTIFY                 unProcessWithInput - Line: *
+DEBUG 2021-11-15 10:10:17,577  9529ms NOTIFY                 unProcessWithInput - Line: *******************************************************************************/
+DEBUG 2021-11-15 10:10:17,582  9533ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,584  9536ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,592  9544ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,595  9547ms NOTIFY                 unProcessWithInput - Line: /* Recommended DATABASE name is classicmodels. */
+DEBUG 2021-11-15 10:10:17,598  9550ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,601  9553ms NOTIFY                 unProcessWithInput - Line: /* CREATE DATABASE classicmodels; */
+DEBUG 2021-11-15 10:10:17,605  9557ms NOTIFY                 unProcessWithInput - Line: /* USE classicmodels; */
+DEBUG 2021-11-15 10:10:17,607  9559ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,611  9562ms NOTIFY                 unProcessWithInput - Line: /* DROP the existing tables. Comment this out if it is not needed. */
+DEBUG 2021-11-15 10:10:17,613  9565ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,619  9570ms NOTIFY                 unProcessWithInput - Line: /* webgoat.net note: use name webgoat_coins" */
+DEBUG 2021-11-15 10:10:17,625  9576ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,627  9579ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,642  9594ms NOTIFY                 unProcessWithInput - Line: DROP TABLE Customers;
+DEBUG 2021-11-15 10:10:17,651  9602ms NOTIFY                 unProcessWithInput - Line: DROP TABLE CustomerLogin;
+DEBUG 2021-11-15 10:10:17,654  9606ms NOTIFY                 unProcessWithInput - Line: DROP TABLE SecurityQuestions;
+DEBUG 2021-11-15 10:10:17,668  9619ms NOTIFY                 unProcessWithInput - Line: DROP TABLE Employees;
+DEBUG 2021-11-15 10:10:17,674  9626ms NOTIFY                 unProcessWithInput - Line: DROP TABLE Offices;
+DEBUG 2021-11-15 10:10:17,687  9639ms NOTIFY                 unProcessWithInput - Line: DROP TABLE OrderDetails;
+DEBUG 2021-11-15 10:10:17,693  9644ms NOTIFY                 unProcessWithInput - Line: DROP TABLE Orders;
+DEBUG 2021-11-15 10:10:17,699  9651ms NOTIFY                 unProcessWithInput - Line: DROP TABLE Payments;
+DEBUG 2021-11-15 10:10:17,707  9658ms NOTIFY                 unProcessWithInput - Line: DROP TABLE Products;
+DEBUG 2021-11-15 10:10:17,713  9664ms NOTIFY                 unProcessWithInput - Line: DROP TABLE Categories;
+DEBUG 2021-11-15 10:10:17,719  9671ms NOTIFY                 unProcessWithInput - Line: DROP TABLE Comments;
+DEBUG 2021-11-15 10:10:17,736  9688ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,741  9693ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,745  9697ms NOTIFY                 unProcessWithInput - Line: /* Create the full set of Classic Models Tables */
+DEBUG 2021-11-15 10:10:17,748  9700ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,750  9702ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE Customers (
+DEBUG 2021-11-15 10:10:17,754  9705ms NOTIFY                 unProcessWithInput - Line:   customerNumber INTEGER NOT NULL AUTO_INCREMENT,
+DEBUG 2021-11-15 10:10:17,756  9708ms NOTIFY                 unProcessWithInput - Line:   customerName VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:17,760  9712ms NOTIFY                 unProcessWithInput - Line:   logoFileName VARCHAR(100) NULL,
+DEBUG 2021-11-15 10:10:17,764  9716ms NOTIFY                 unProcessWithInput - Line:   contactLastName VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:17,766  9718ms NOTIFY                 unProcessWithInput - Line:   contactFirstName VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:17,770  9722ms NOTIFY                 unProcessWithInput - Line:   phone VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:17,774  9726ms NOTIFY                 unProcessWithInput - Line:   addressLine1 VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:17,786  9738ms NOTIFY                 unProcessWithInput - Line:   addressLine2 VARCHAR(50) NULL,
+DEBUG 2021-11-15 10:10:17,789  9741ms NOTIFY                 unProcessWithInput - Line:   city VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:17,792  9744ms NOTIFY                 unProcessWithInput - Line:   state VARCHAR(50) NULL,
+DEBUG 2021-11-15 10:10:17,796  9748ms NOTIFY                 unProcessWithInput - Line:   postalCode VARCHAR(15) NULL,
+DEBUG 2021-11-15 10:10:17,798  9750ms NOTIFY                 unProcessWithInput - Line:   country VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:17,802  9754ms NOTIFY                 unProcessWithInput - Line:   salesRepEmployeeNumber INTEGER NULL,
+DEBUG 2021-11-15 10:10:17,806  9758ms NOTIFY                 unProcessWithInput - Line:   creditLimit DOUBLE NULL,
+DEBUG 2021-11-15 10:10:17,809  9761ms NOTIFY                 unProcessWithInput - Line:   PRIMARY KEY (customerNumber)
+DEBUG 2021-11-15 10:10:17,812  9764ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:17,818  9770ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,828  9780ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE CustomerLogin (
+DEBUG 2021-11-15 10:10:17,854  9806ms NOTIFY                 unProcessWithInput - Line: 	email VARCHAR(100) NOT NULL,
+DEBUG 2021-11-15 10:10:17,861  9813ms NOTIFY                 unProcessWithInput - Line: 	customerNumber INTEGER NOT NULL,
+DEBUG 2021-11-15 10:10:17,864  9816ms NOTIFY                 unProcessWithInput - Line: 	password VARCHAR(40) NOT NULL,
+DEBUG 2021-11-15 10:10:17,867  9819ms NOTIFY                 unProcessWithInput - Line: 	salt VARCHAR(40) NOT NULL,
+DEBUG 2021-11-15 10:10:17,877  9829ms NOTIFY                 unProcessWithInput - Line: 	question_id SMALLINT NULL,
+DEBUG 2021-11-15 10:10:17,881  9833ms NOTIFY                 unProcessWithInput - Line: 	answer VARCHAR(50) NULL,
+DEBUG 2021-11-15 10:10:17,884  9836ms NOTIFY                 unProcessWithInput - Line: 	PRIMARY KEY (email)
+DEBUG 2021-11-15 10:10:17,892  9844ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:17,900  9852ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,915  9867ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE SecurityQuestions (
+DEBUG 2021-11-15 10:10:17,928  9880ms NOTIFY                 unProcessWithInput - Line: 	question_id SMALLINT NOT NULL AUTO_INCREMENT,
+DEBUG 2021-11-15 10:10:17,932  9884ms NOTIFY                 unProcessWithInput - Line: 	question_text VARCHAR(400) NOT NULL,
+DEBUG 2021-11-15 10:10:17,936  9888ms NOTIFY                 unProcessWithInput - Line: 	PRIMARY KEY (question_id)
+DEBUG 2021-11-15 10:10:17,940  9892ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:17,954  9906ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,964  9916ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:17,980  9932ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE Employees (
+DEBUG 2021-11-15 10:10:17,986  9938ms NOTIFY                 unProcessWithInput - Line:   employeeNumber INTEGER NOT NULL AUTO_INCREMENT,
+DEBUG 2021-11-15 10:10:17,994  9946ms NOTIFY                 unProcessWithInput - Line:   lastName VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,000  9952ms NOTIFY                 unProcessWithInput - Line:   firstName VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,002  9954ms NOTIFY                 unProcessWithInput - Line:   extension VARCHAR(10) NOT NULL,
+DEBUG 2021-11-15 10:10:18,007  9959ms NOTIFY                 unProcessWithInput - Line:   email VARCHAR(100) NOT NULL,
+DEBUG 2021-11-15 10:10:18,010  9962ms NOTIFY                 unProcessWithInput - Line:   officeCode VARCHAR(10) NOT NULL,
+DEBUG 2021-11-15 10:10:18,015  9967ms NOTIFY                 unProcessWithInput - Line:   reportsTo INTEGER NULL,
+DEBUG 2021-11-15 10:10:18,018  9970ms NOTIFY                 unProcessWithInput - Line:   jobTitle VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,022  9974ms NOTIFY                 unProcessWithInput - Line:   PRIMARY KEY (employeeNumber)
+DEBUG 2021-11-15 10:10:18,026  9978ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:18,032  9984ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:18,042  9994ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE Offices (
+DEBUG 2021-11-15 10:10:18,046  9998ms NOTIFY                 unProcessWithInput - Line:   officeCode VARCHAR(10) NOT NULL,
+DEBUG 2021-11-15 10:10:18,050 10002ms NOTIFY                 unProcessWithInput - Line:   city VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,054 10006ms NOTIFY                 unProcessWithInput - Line:   phone VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,066 10018ms NOTIFY                 unProcessWithInput - Line:   addressLine1 VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,076 10028ms NOTIFY                 unProcessWithInput - Line:   addressLine2 VARCHAR(50) NULL,
+DEBUG 2021-11-15 10:10:18,080 10032ms NOTIFY                 unProcessWithInput - Line:   state VARCHAR(50) NULL,
+DEBUG 2021-11-15 10:10:18,084 10036ms NOTIFY                 unProcessWithInput - Line:   country VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,087 10039ms NOTIFY                 unProcessWithInput - Line:   postalCode VARCHAR(15) NOT NULL,
+DEBUG 2021-11-15 10:10:18,090 10042ms NOTIFY                 unProcessWithInput - Line:   territory VARCHAR(10) NOT NULL,
+DEBUG 2021-11-15 10:10:18,112 10064ms NOTIFY                 unProcessWithInput - Line:   PRIMARY KEY (officeCode)
+DEBUG 2021-11-15 10:10:18,121 10073ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:18,136 10088ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:18,164 10116ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE OrderDetails (
+DEBUG 2021-11-15 10:10:18,167 10119ms NOTIFY                 unProcessWithInput - Line:   orderNumber INTEGER NOT NULL,
+DEBUG 2021-11-15 10:10:18,171 10123ms NOTIFY                 unProcessWithInput - Line:   productCode VARCHAR(15) NOT NULL,
+DEBUG 2021-11-15 10:10:18,175 10127ms NOTIFY                 unProcessWithInput - Line:   quantityOrdered INTEGER NOT NULL,
+DEBUG 2021-11-15 10:10:18,185 10137ms NOTIFY                 unProcessWithInput - Line:   priceEach DOUBLE NOT NULL,
+DEBUG 2021-11-15 10:10:18,206 10158ms NOTIFY                 unProcessWithInput - Line:   orderLineNumber SMALLINT NOT NULL,
+DEBUG 2021-11-15 10:10:18,212 10164ms NOTIFY                 unProcessWithInput - Line:   PRIMARY KEY (orderNumber, productCode)
+DEBUG 2021-11-15 10:10:18,216 10168ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:18,222 10174ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:18,236 10188ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE Orders (
+DEBUG 2021-11-15 10:10:18,245 10197ms NOTIFY                 unProcessWithInput - Line:   orderNumber INTEGER NOT NULL AUTO_INCREMENT,
+DEBUG 2021-11-15 10:10:18,249 10201ms NOTIFY                 unProcessWithInput - Line:   orderDate DATETIME NOT NULL,
+DEBUG 2021-11-15 10:10:18,258 10210ms NOTIFY                 unProcessWithInput - Line:   requiredDate DATETIME NOT NULL,
+DEBUG 2021-11-15 10:10:18,262 10214ms NOTIFY                 unProcessWithInput - Line:   shippedDate DATETIME NULL,
+DEBUG 2021-11-15 10:10:18,265 10217ms NOTIFY                 unProcessWithInput - Line:   status VARCHAR(15) NOT NULL,
+DEBUG 2021-11-15 10:10:18,271 10223ms NOTIFY                 unProcessWithInput - Line:   comments TEXT NULL,
+DEBUG 2021-11-15 10:10:18,274 10226ms NOTIFY                 unProcessWithInput - Line:   customerNumber INTEGER NOT NULL,
+DEBUG 2021-11-15 10:10:18,278 10229ms NOTIFY                 unProcessWithInput - Line:   PRIMARY KEY (orderNumber)
+DEBUG 2021-11-15 10:10:18,281 10232ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:18,295 10246ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:18,332 10284ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:18,340 10292ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE Payments (
+DEBUG 2021-11-15 10:10:18,343 10295ms NOTIFY                 unProcessWithInput - Line:   customerNumber INTEGER NOT NULL,  
+DEBUG 2021-11-15 10:10:18,354 10306ms NOTIFY                 unProcessWithInput - Line:   cardType VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,357 10309ms NOTIFY                 unProcessWithInput - Line:   creditCardNumber VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,360 10312ms NOTIFY                 unProcessWithInput - Line:   verificationCode SMALLINT NOT NULL,
+DEBUG 2021-11-15 10:10:18,365 10317ms NOTIFY                 unProcessWithInput - Line:   cardExpirationMonth VARCHAR(3) NOT NULL,
+DEBUG 2021-11-15 10:10:18,368 10320ms NOTIFY                 unProcessWithInput - Line:   cardExpirationYear VARCHAR(5) NOT NULL,  
+DEBUG 2021-11-15 10:10:18,371 10323ms NOTIFY                 unProcessWithInput - Line:   confirmationCode VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,374 10326ms NOTIFY                 unProcessWithInput - Line:   paymentDate DATETIME NOT NULL,
+DEBUG 2021-11-15 10:10:18,379 10331ms NOTIFY                 unProcessWithInput - Line:   amount DOUBLE NOT NULL,
+DEBUG 2021-11-15 10:10:18,382 10334ms NOTIFY                 unProcessWithInput - Line:   PRIMARY KEY (customerNumber, confirmationCode)
+DEBUG 2021-11-15 10:10:18,385 10337ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:18,390 10342ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:18,406 10358ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE Categories(
+DEBUG 2021-11-15 10:10:18,415 10367ms NOTIFY                 unProcessWithInput - Line:   catNumber INTEGER NOT NULL AUTO_INCREMENT,
+DEBUG 2021-11-15 10:10:18,418 10370ms NOTIFY                 unProcessWithInput - Line:   catName VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,422 10374ms NOTIFY                 unProcessWithInput - Line:   catDesc TEXT NOT NULL,
+DEBUG 2021-11-15 10:10:18,426 10378ms NOTIFY                 unProcessWithInput - Line:   PRIMARY KEY (catNumber)
+DEBUG 2021-11-15 10:10:18,429 10381ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:18,434 10386ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:18,453 10405ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE Products (
+DEBUG 2021-11-15 10:10:18,459 10411ms NOTIFY                 unProcessWithInput - Line:   productCode VARCHAR(15) NOT NULL,
+DEBUG 2021-11-15 10:10:18,462 10414ms NOTIFY                 unProcessWithInput - Line:   productName VARCHAR(200) NOT NULL,
+DEBUG 2021-11-15 10:10:18,465 10417ms NOTIFY                 unProcessWithInput - Line:   catNumber INTEGER NOT NULL,
+DEBUG 2021-11-15 10:10:18,469 10420ms NOTIFY                 unProcessWithInput - Line:   productImage VARCHAR(100) NOT NULL,
+DEBUG 2021-11-15 10:10:18,471 10423ms NOTIFY                 unProcessWithInput - Line:   productVendor VARCHAR(50) NOT NULL,
+DEBUG 2021-11-15 10:10:18,476 10428ms NOTIFY                 unProcessWithInput - Line:   productDescription TEXT NOT NULL,
+DEBUG 2021-11-15 10:10:18,479 10431ms NOTIFY                 unProcessWithInput - Line:   quantityInStock SMALLINT NOT NULL,
+DEBUG 2021-11-15 10:10:18,482 10434ms NOTIFY                 unProcessWithInput - Line:   buyPrice DOUBLE NOT NULL,
+DEBUG 2021-11-15 10:10:18,485 10437ms NOTIFY                 unProcessWithInput - Line:   MSRP DOUBLE NOT NULL,
+DEBUG 2021-11-15 10:10:18,493 10445ms NOTIFY                 unProcessWithInput - Line:   PRIMARY KEY (productCode)
+DEBUG 2021-11-15 10:10:18,499 10451ms NOTIFY                 unProcessWithInput - Line: );
+DEBUG 2021-11-15 10:10:18,502 10454ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:18,513 10465ms NOTIFY                 unProcessWithInput - Line: CREATE TABLE Comments(
+DEBUG 2021-11-15 10:10:18,524 10476ms NOTIFY                 unProcessWithInput - Line: 	commentNumber INTEGER NOT NULL AUTO_INCREMENT,
+DEBUG 2021-11-15 10:10:18,528 10480ms NOTIFY                 unProcessWithInput - Line: 	productCode VARCHAR(15) NOT NULL,
+DEBUG 2021-11-15 10:10:18,531 10483ms NOTIFY                 unProcessWithInput - Line: 	email VARCHAR(100) NOT NULL,
+DEBUG 2021-11-15 10:10:18,543 10495ms NOTIFY                 unProcessWithInput - Line: 	comment TEXT NOT NULL,
+DEBUG 2021-11-15 10:10:18,549 10501ms NOTIFY                 unProcessWithInput - Line: 	PRIMARY KEY (commentNumber)
+DEBUG 2021-11-15 10:10:18,553 10505ms NOTIFY                 unProcessWithInput - Line: );
+ERROR 2021-11-15 10:10:18,586 10537ms NOTIFY                 ssWithInput>b__1_1 - mysql: [Warning] Using a password on the command line interface can be insecure.
+INFO  2021-11-15 10:10:19,604 11556ms NOTIFY                 cessWithInput>b__2 - Process exited
+DEBUG 2021-11-15 10:10:19,616 11568ms NOTIFY                 unProcessWithInput - Line: /******************************************************************************
+DEBUG 2021-11-15 10:10:19,624 11576ms NOTIFY                 unProcessWithInput - Line:  * Copyright (c) 2005 Actuate Corporation.
+DEBUG 2021-11-15 10:10:19,648 11600ms NOTIFY                 unProcessWithInput - Line:  * All rights reserved. This file and the accompanying materials
+DEBUG 2021-11-15 10:10:19,658 11610ms NOTIFY                 unProcessWithInput - Line:  * are made available under the terms of the Eclipse Public License v1.0
+DEBUG 2021-11-15 10:10:19,662 11614ms NOTIFY                 unProcessWithInput - Line:  * which accompanies this distribution, and is available at
+DEBUG 2021-11-15 10:10:19,674 11626ms NOTIFY                 unProcessWithInput - Line:  * http:/www.eclipse.org/legal/epl-v10.html
+DEBUG 2021-11-15 10:10:19,686 11637ms NOTIFY                 unProcessWithInput - Line:  *
+DEBUG 2021-11-15 10:10:19,694 11646ms NOTIFY                 unProcessWithInput - Line:  * Contributors:
+DEBUG 2021-11-15 10:10:19,707 11659ms NOTIFY                 unProcessWithInput - Line:  *  Actuate Corporation  - initial implementation
+DEBUG 2021-11-15 10:10:19,710 11662ms NOTIFY                 unProcessWithInput - Line:  *
+DEBUG 2021-11-15 10:10:19,714 11666ms NOTIFY                 unProcessWithInput - Line:  * Classic Models Inc. sample database developed as part of the
+DEBUG 2021-11-15 10:10:19,717 11669ms NOTIFY                 unProcessWithInput - Line:  * Eclipse BIRT Project. For more information, see http:/www.eclipse.org/birt
+DEBUG 2021-11-15 10:10:19,720 11672ms NOTIFY                 unProcessWithInput - Line:  *
+DEBUG 2021-11-15 10:10:19,723 11675ms NOTIFY                 unProcessWithInput - Line:  *******************************************************************************/
+DEBUG 2021-11-15 10:10:19,727 11679ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,732 11684ms NOTIFY                 unProcessWithInput - Line: /* Loads the Classic Models tables using the MySQL LOAD command */
+DEBUG 2021-11-15 10:10:19,736 11688ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,744 11696ms NOTIFY                 unProcessWithInput - Line: /* Preparing the load files for importing. Input file requirements:
+DEBUG 2021-11-15 10:10:19,753 11705ms NOTIFY                 unProcessWithInput - Line:      - Column order in the file must be the same as the columns in the table
+DEBUG 2021-11-15 10:10:19,756 11708ms NOTIFY                 unProcessWithInput - Line:      - Columns are Comma delimited
+DEBUG 2021-11-15 10:10:19,759 11711ms NOTIFY                 unProcessWithInput - Line:      - Text is quoted (")
+DEBUG 2021-11-15 10:10:19,762 11714ms NOTIFY                 unProcessWithInput - Line:      - NULL columns must be ,NULL,  ( ,, is not acceptable)
+DEBUG 2021-11-15 10:10:19,765 11717ms NOTIFY                 unProcessWithInput - Line:      - Dates must be in YYYY-MM-DDD format
+DEBUG 2021-11-15 10:10:19,768 11720ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,771 11723ms NOTIFY                 unProcessWithInput - Line:    Input files expected in the datafiles direcory, parallel to this script.
+DEBUG 2021-11-15 10:10:19,774 11726ms NOTIFY                 unProcessWithInput - Line: */
+DEBUG 2021-11-15 10:10:19,779 11731ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,781 11733ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,784 11736ms NOTIFY                 unProcessWithInput - Line: /* First make sure all the tables are empty */
+DEBUG 2021-11-15 10:10:19,787 11739ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,790 11742ms NOTIFY                 unProcessWithInput - Line: DELETE FROM Customers;
+DEBUG 2021-11-15 10:10:19,794 11746ms NOTIFY                 unProcessWithInput - Line: DELETE FROM CustomerLogin;
+DEBUG 2021-11-15 10:10:19,798 11750ms NOTIFY                 unProcessWithInput - Line: DELETE FROM SecurityQuestions;
+DEBUG 2021-11-15 10:10:19,802 11754ms NOTIFY                 unProcessWithInput - Line: DELETE FROM Employees;
+DEBUG 2021-11-15 10:10:19,810 11762ms NOTIFY                 unProcessWithInput - Line: DELETE FROM Offices;
+DEBUG 2021-11-15 10:10:19,818 11770ms NOTIFY                 unProcessWithInput - Line: DELETE FROM OrderDetails;
+DEBUG 2021-11-15 10:10:19,822 11774ms NOTIFY                 unProcessWithInput - Line: DELETE FROM Orders;
+DEBUG 2021-11-15 10:10:19,830 11782ms NOTIFY                 unProcessWithInput - Line: DELETE FROM Payments;
+DEBUG 2021-11-15 10:10:19,836 11788ms NOTIFY                 unProcessWithInput - Line: DELETE FROM Products;
+DEBUG 2021-11-15 10:10:19,838 11790ms NOTIFY                 unProcessWithInput - Line: DELETE FROM Categories;
+DEBUG 2021-11-15 10:10:19,843 11795ms NOTIFY                 unProcessWithInput - Line: DELETE FROM Comments;
+DEBUG 2021-11-15 10:10:19,848 11800ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,851 11803ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,854 11806ms NOTIFY                 unProcessWithInput - Line: /* Load records into the tables. There should be no warnings.*/
+DEBUG 2021-11-15 10:10:19,866 11818ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,876 11828ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\customers.txt' INTO TABLE Customers
+DEBUG 2021-11-15 10:10:19,886 11838ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:19,892 11844ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,898 11850ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 10;
+DEBUG 2021-11-15 10:10:19,917 11869ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,922 11874ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\customerlogin.a2.txt' INTO TABLE CustomerLogin
+DEBUG 2021-11-15 10:10:19,925 11877ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:19,928 11880ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,938 11890ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 10;
+DEBUG 2021-11-15 10:10:19,945 11897ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,948 11900ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\securityquestions.txt' INTO TABLE SecurityQuestions
+DEBUG 2021-11-15 10:10:19,952 11904ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:19,955 11907ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,964 11916ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 10;
+DEBUG 2021-11-15 10:10:19,974 11926ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,978 11930ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\employees.txt' INTO TABLE Employees
+DEBUG 2021-11-15 10:10:19,981 11933ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:19,985 11937ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,989 11941ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 10;
+DEBUG 2021-11-15 10:10:19,993 11945ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:19,996 11948ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\offices.txt' INTO TABLE Offices
+DEBUG 2021-11-15 10:10:20,000 11952ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:20,004 11956ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,010 11962ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 10;
+DEBUG 2021-11-15 10:10:20,014 11966ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,017 11969ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\orderdetails.txt' INTO TABLE OrderDetails
+DEBUG 2021-11-15 10:10:20,022 11974ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:20,028 11980ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,050 12002ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 10;
+DEBUG 2021-11-15 10:10:20,055 12007ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,058 12010ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\orders.txt' INTO TABLE Orders
+DEBUG 2021-11-15 10:10:20,064 12016ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:20,072 12024ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,074 12026ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 10;
+DEBUG 2021-11-15 10:10:20,086 12037ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,091 12043ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\payments.txt' INTO TABLE Payments
+DEBUG 2021-11-15 10:10:20,097 12049ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:20,101 12053ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,108 12060ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 100;
+DEBUG 2021-11-15 10:10:20,124 12076ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,128 12080ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\categories.txt' INTO TABLE Categories 
+DEBUG 2021-11-15 10:10:20,134 12086ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:20,137 12089ms NOTIFY                 unProcessWithInput - Line:           
+DEBUG 2021-11-15 10:10:20,147 12099ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 100;
+DEBUG 2021-11-15 10:10:20,150 12102ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,154 12105ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,166 12118ms NOTIFY                 unProcessWithInput - Line: LOAD DATA LOCAL INFILE 'DB_Scripts\\datafiles\\products.txt' INTO TABLE Products
+DEBUG 2021-11-15 10:10:20,168 12120ms NOTIFY                 unProcessWithInput - Line:           FIELDS TERMINATED BY '|' LINES TERMINATED BY '\n';
+DEBUG 2021-11-15 10:10:20,172 12124ms NOTIFY                 unProcessWithInput - Line: 
+DEBUG 2021-11-15 10:10:20,175 12127ms NOTIFY                 unProcessWithInput - Line: SHOW WARNINGS LIMIT 10;
+DEBUG 2021-11-15 10:10:20,178 12130ms NOTIFY                 unProcessWithInput - Line: 
+INFO  2021-11-15 10:10:20,182 12134ms NOTIFY                 ssWithInput>b__1_0 - Level	Code	Message
+INFO  2021-11-15 10:10:20,190 12142ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'creditLimit' at row 1
+ERROR 2021-11-15 10:10:20,190 12142ms NOTIFY                 ssWithInput>b__1_1 - mysql: [Warning] Using a password on the command line interface can be insecure.
+INFO  2021-11-15 10:10:20,199 12151ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'creditLimit' at row 2
+INFO  2021-11-15 10:10:20,205 12157ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'creditLimit' at row 3
+INFO  2021-11-15 10:10:20,208 12160ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'creditLimit' at row 4
+INFO  2021-11-15 10:10:20,211 12163ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'creditLimit' at row 5
+INFO  2021-11-15 10:10:20,214 12166ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'creditLimit' at row 6
+INFO  2021-11-15 10:10:20,224 12176ms NOTIFY                 ssWithInput>b__1_0 - Warning	1366	Incorrect integer value: 'NULL' for column 'salesRepEmployeeNumber' at row 7
+INFO  2021-11-15 10:10:20,227 12179ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'creditLimit' at row 7
+INFO  2021-11-15 10:10:20,235 12187ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'creditLimit' at row 8
+INFO  2021-11-15 10:10:20,238 12190ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'creditLimit' at row 9
+INFO  2021-11-15 10:10:20,241 12193ms NOTIFY                 ssWithInput>b__1_0 - Level	Code	Message
+INFO  2021-11-15 10:10:20,244 12196ms NOTIFY                 ssWithInput>b__1_0 - Warning	1366	Incorrect integer value: 'NULL' for column 'reportsTo' at row 1
+INFO  2021-11-15 10:10:20,248 12200ms NOTIFY                 ssWithInput>b__1_0 - Level	Code	Message
+INFO  2021-11-15 10:10:20,252 12204ms NOTIFY                 ssWithInput>b__1_0 - Warning	1366	Incorrect integer value: '
+INFO  2021-11-15 10:10:20,255 12207ms NOTIFY                 ssWithInput>b__1_0 - ' for column 'customerNumber' at row 13
+INFO  2021-11-15 10:10:20,259 12211ms NOTIFY                 ssWithInput>b__1_0 - Warning	1366	Incorrect integer value: '
+INFO  2021-11-15 10:10:20,263 12215ms NOTIFY                 ssWithInput>b__1_0 - ' for column 'customerNumber' at row 65
+INFO  2021-11-15 10:10:20,266 12218ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'shippedDate' at row 68
+INFO  2021-11-15 10:10:20,272 12224ms NOTIFY                 ssWithInput>b__1_0 - Warning	1366	Incorrect integer value: '
+INFO  2021-11-15 10:10:20,274 12226ms NOTIFY                 ssWithInput>b__1_0 - ' for column 'customerNumber' at row 74
+INFO  2021-11-15 10:10:20,277 12229ms NOTIFY                 ssWithInput>b__1_0 - Warning	1366	Incorrect integer value: '
+INFO  2021-11-15 10:10:20,280 12232ms NOTIFY                 ssWithInput>b__1_0 - ' for column 'customerNumber' at row 119
+INFO  2021-11-15 10:10:20,292 12244ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'shippedDate' at row 149
+INFO  2021-11-15 10:10:20,304 12256ms NOTIFY                 ssWithInput>b__1_0 - Warning	1366	Incorrect integer value: '
+INFO  2021-11-15 10:10:20,311 12263ms NOTIFY                 ssWithInput>b__1_0 - ' for column 'customerNumber' at row 154
+INFO  2021-11-15 10:10:20,322 12274ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'shippedDate' at row 161
+INFO  2021-11-15 10:10:20,324 12276ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'shippedDate' at row 163
+INFO  2021-11-15 10:10:20,336 12287ms NOTIFY                 ssWithInput>b__1_0 - Warning	1366	Incorrect integer value: '
+INFO  2021-11-15 10:10:20,343 12295ms NOTIFY                 ssWithInput>b__1_0 - ' for column 'customerNumber' at row 180
+INFO  2021-11-15 10:10:20,350 12302ms NOTIFY                 ssWithInput>b__1_0 - Level	Code	Message
+INFO  2021-11-15 10:10:20,354 12306ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 1
+INFO  2021-11-15 10:10:20,356 12308ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 2
+INFO  2021-11-15 10:10:20,359 12311ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 3
+INFO  2021-11-15 10:10:20,371 12322ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 4
+INFO  2021-11-15 10:10:20,373 12325ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 5
+INFO  2021-11-15 10:10:20,378 12330ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 6
+INFO  2021-11-15 10:10:20,381 12333ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 7
+INFO  2021-11-15 10:10:20,384 12336ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 8
+INFO  2021-11-15 10:10:20,388 12340ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 9
+INFO  2021-11-15 10:10:20,391 12343ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 10
+INFO  2021-11-15 10:10:20,395 12347ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 11
+INFO  2021-11-15 10:10:20,398 12350ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 12
+INFO  2021-11-15 10:10:20,401 12353ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 13
+INFO  2021-11-15 10:10:20,405 12357ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 14
+INFO  2021-11-15 10:10:20,413 12364ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 15
+INFO  2021-11-15 10:10:20,416 12368ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 16
+INFO  2021-11-15 10:10:20,424 12376ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 17
+INFO  2021-11-15 10:10:20,429 12381ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 18
+INFO  2021-11-15 10:10:20,432 12384ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 19
+INFO  2021-11-15 10:10:20,435 12387ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 20
+INFO  2021-11-15 10:10:20,445 12397ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 21
+INFO  2021-11-15 10:10:20,448 12400ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 22
+INFO  2021-11-15 10:10:20,451 12403ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 23
+INFO  2021-11-15 10:10:20,459 12410ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 24
+INFO  2021-11-15 10:10:20,463 12415ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 25
+INFO  2021-11-15 10:10:20,465 12417ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 26
+INFO  2021-11-15 10:10:20,468 12420ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 27
+INFO  2021-11-15 10:10:20,472 12423ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 28
+INFO  2021-11-15 10:10:20,475 12426ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 29
+INFO  2021-11-15 10:10:20,477 12429ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 30
+INFO  2021-11-15 10:10:20,481 12432ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 31
+INFO  2021-11-15 10:10:20,483 12435ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 32
+INFO  2021-11-15 10:10:20,487 12439ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 33
+INFO  2021-11-15 10:10:20,491 12443ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 34
+INFO  2021-11-15 10:10:20,497 12449ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 35
+INFO  2021-11-15 10:10:20,503 12455ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 36
+INFO  2021-11-15 10:10:20,507 12458ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 37
+INFO  2021-11-15 10:10:20,509 12461ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 38
+INFO  2021-11-15 10:10:20,512 12464ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 39
+INFO  2021-11-15 10:10:20,515 12467ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 40
+INFO  2021-11-15 10:10:20,525 12477ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 41
+INFO  2021-11-15 10:10:20,538 12490ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 42
+INFO  2021-11-15 10:10:20,545 12497ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 43
+INFO  2021-11-15 10:10:20,550 12502ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 44
+INFO  2021-11-15 10:10:20,553 12504ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 45
+INFO  2021-11-15 10:10:20,556 12508ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 46
+INFO  2021-11-15 10:10:20,558 12510ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 47
+INFO  2021-11-15 10:10:20,561 12512ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 48
+INFO  2021-11-15 10:10:20,573 12525ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 49
+INFO  2021-11-15 10:10:20,576 12528ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 50
+INFO  2021-11-15 10:10:20,581 12532ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 51
+INFO  2021-11-15 10:10:20,583 12535ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 52
+INFO  2021-11-15 10:10:20,587 12539ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 53
+INFO  2021-11-15 10:10:20,591 12542ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 54
+INFO  2021-11-15 10:10:20,592 12544ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 55
+INFO  2021-11-15 10:10:20,597 12549ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 56
+INFO  2021-11-15 10:10:20,599 12551ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 57
+INFO  2021-11-15 10:10:20,602 12554ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 58
+INFO  2021-11-15 10:10:20,614 12566ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 59
+INFO  2021-11-15 10:10:20,618 12570ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 60
+INFO  2021-11-15 10:10:20,622 12573ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 61
+INFO  2021-11-15 10:10:20,624 12576ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 62
+INFO  2021-11-15 10:10:20,630 12582ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 63
+INFO  2021-11-15 10:10:20,633 12585ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'amount' at row 64
+INFO  2021-11-15 10:10:20,636 12587ms NOTIFY                 ssWithInput>b__1_0 - Level	Code	Message
+INFO  2021-11-15 10:10:20,639 12590ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 1
+INFO  2021-11-15 10:10:20,641 12593ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 2
+INFO  2021-11-15 10:10:20,645 12597ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 3
+INFO  2021-11-15 10:10:20,648 12600ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 4
+INFO  2021-11-15 10:10:20,651 12603ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 5
+INFO  2021-11-15 10:10:20,654 12606ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 6
+INFO  2021-11-15 10:10:20,664 12616ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 7
+INFO  2021-11-15 10:10:20,666 12618ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 8
+INFO  2021-11-15 10:10:20,669 12621ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 9
+INFO  2021-11-15 10:10:20,673 12625ms NOTIFY                 ssWithInput>b__1_0 - Warning	1265	Data truncated for column 'MSRP' at row 10
+INFO  2021-11-15 10:10:21,275 13227ms NOTIFY                 cessWithInput>b__2 - Process exited
+DEBUG 2021-11-15 10:55:07,972    55ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-15 10:55:08,010    93ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-15 10:55:08,017   100ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-15 11:33:59,773    52ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-15 11:33:59,802    81ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-15 11:33:59,807    86ms NOTIFY                 Create             - Creating provider forMySql
+DEBUG 2021-11-15 11:36:42,221    51ms NOTIFY                 Init               - DYLD_FALLBACK_LIBRARY_PATH: 
+DEBUG 2021-11-15 11:36:42,290   120ms NOTIFY                 Init               - PWD: C:\Program Files (x86)\IIS Express
+INFO  2021-11-15 11:36:42,316   145ms NOTIFY                 Create             - Creating provider forMySql
