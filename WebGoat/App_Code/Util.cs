@@ -64,7 +64,6 @@ namespace OWASP.WebGoat.NET.App_Code
                         else
                             replaced = line;
 
-                        log.Debug("Line: " + replaced);
 
                         process.StandardInput.WriteLine(replaced);
                     }
