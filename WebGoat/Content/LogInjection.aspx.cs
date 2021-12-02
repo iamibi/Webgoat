@@ -22,8 +22,7 @@ namespace OWASP.WebGoat.NET
         public void btnSubmit_Click(object sender, EventArgs args)
         {
             string result = "Ticket Successfully Submitted!";
-            byte[] msgBytes = Encoding.Unicode.GetBytes(txtBoxMsg.Text);
-            log.DebugFormat("{0}", Encoding.Unicode.GetString(msgBytes));
+            // Do some processing with the message present in txtBoxMsg.Text
             lblResultMessage.Text = result;
         }
 
