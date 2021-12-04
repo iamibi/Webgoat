@@ -7,6 +7,7 @@ using System.Security.Principal;
 using OWASP.WebGoat.NET.App_Code;
 using log4net.Config;
 using System.Diagnostics;
+using System.Web.Optimization;
 
 namespace OWASP.WebGoat.NET
 {
@@ -19,7 +20,16 @@ namespace OWASP.WebGoat.NET
             //    BasicConfigurator.Configure();
             //else
                 log4net.Config.XmlConfigurator.Configure();
-            
+            BundleTable.Bundles.Add(new ScriptBundle("~/bundle/js")
+                .Include(
+                    "~/Resources/client-scripts/jquery-1.4.2.min.js",
+                    "~/Resources/client-scripts/menu.js",
+                    "~/Resources/client-scripts/jquery-ui-1.8.16.custom.min.js",
+                    "~/Resources/client-scripts/jquery.autocomplete.js"
+                )
+            );
+            BundleTable.Bundles.Add(new StyleBundle("~/bundle/css").Include("~/Resources/jquery-ui/jquery-ui-1.8.16.custom.css", "~/Resources/jquery-libs/autocomplete/styles.css"));
+
             Settings.Init(Server);
         }
 
