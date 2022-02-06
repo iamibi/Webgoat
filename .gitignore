@@ -10,3 +10,7 @@ obj
 # Trash Files #
 ###############
 .DS_Store
+
+# Visual Studio #
+#################
+.vs/
